@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:38:15 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/19 19:33:07 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/19 19:35:25 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ void	px_img(t_base *base, int x, int y, int color)
 /*
 ** return the color needed for the pixel
 */
+
 void	get_color(t_fract *fr, int i)
 {
 	int r;
 	int g;
 	int b;
 
-	fr->color = 0;
+	fr->color = fr->mx * fr->my;
 	r = 255 * i / fr->maxi;
 	g = 255 * i / fr->maxi;
 	b = 255 * i / fr->maxi;
@@ -40,33 +41,7 @@ void	get_color(t_fract *fr, int i)
 	fr->color = (fr->color << 8 | g);
 	fr->color = (fr->color << 16 | b);
 }
-/*
-void	get_color(t_fract *fr, int i)
-{
-	double q;
 
-	q = (double)i / (double)fr->maxi;
-	if (i <= fr->maxi)
-		fr->color = 0xff0000;
-	if (q > 0.5)
-	    fr->color = 0xffff00;
-	else
-	    fr->color = 0x0000ff;
-}
-
-void	get_color(t_fract *fr, int i)
-{
-	double q;
-
-	q = (double)i / (double)fr->maxi;
-	if (i <= fr->maxi)
-		fr->color = 0x00ff00;
-	if (q > 0.5)
-	    fr->color = (fr->color >> 8 | fr->color << 16);
-	else
-	    fr->color = (fr->color >> 8);
-}
-*/
 /*
 ** Print the UI on the window
 */

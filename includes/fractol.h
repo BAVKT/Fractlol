@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/19 19:10:37 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/19 19:49:38 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,9 @@ void					ui(t_base *base);
 
 void					refresh(t_base *base);
 int						event(int keycode, void *param);
+void					ev_move(int k, t_base *base);
+void					ev_else(int k, t_base * base);
+
 
 /*
 ** The init functions			|  init.c
@@ -90,7 +93,7 @@ void					init_base(t_base *base, char *av);
 t_fract					init_fract();
 
 /*
-** various fucntions			 utils.c
+** Various functions			 utils.c
 */
 
 char					get_fractal(char *av);

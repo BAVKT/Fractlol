@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 16:38:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/19 18:57:51 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/19 19:49:10 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int		main(int ac, char **av)
 	if (ac != 2)
 		error(1);
 	init_base(&base, av[1]);
-	//fractol(&base);
-	julia(&base, &base.fr);
-	mlx_put_image_to_window(base.mx.mlx, base.mx.win, base.mx.img, 0, 0);
-	mlx_loop(base.mx.mlx);
+	fractol(&base);
+	// julia(&base, &base.fr);
+	// mlx_put_image_to_window(base.mx.mlx, base.mx.win, base.mx.img, 0, 0);
+	// mlx_loop(base.mx.mlx);
 	return (0);
 }
