@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/19 17:30:00 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/19 19:10:37 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_fract					init_fract();
 ** various fucntions			 utils.c
 */
 
-char					get_fractal(t_base *base, char *av);
+char					get_fractal(char *av);
 void					error(int e);
 
 #endif

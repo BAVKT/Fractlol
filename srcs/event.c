@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:42:28 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/19 17:37:59 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/19 17:58:06 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	refresh(t_base *base)
 	i = 0;
 	while (i < (base->win_size - 1))
 		base->mx.data[i++] = 0;
-	fractol(base);
+	if (base->name == 'j')
+		julia(base, &base->fr);
 	mlx_put_image_to_window(base->mx.mlx, base->mx.win, base->mx.img, 0, 0);
 	ui(base);
 }
@@ -36,10 +37,11 @@ void	refresh(t_base *base)
 int		event(int keycode, void *param)
 {
 			ft_putendlcolor("event", MAGENTA);
-	t_base base;
+	t_base *base;
 
+	base = (t_base *)param;
 	keycode = 0;
 	param = NULL;
-	refresh(&base);
+	refresh(base);
 	return (0);
 }
