@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:32:42 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/20 17:06:26 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/20 21:43:43 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	init_base(t_base *base, char *av)
 	base->mx.mlx = mlx_init();
 	base->mx.win = mlx_new_window(base->mx.mlx, base->winx, base->winy, "Fractlol");
 	base->mx.img = mlx_new_image(base->mx.mlx, base->winx, base->winy);
-	base->mx.data = (int*)mlx_get_data_addr(base->mx.img,&base->mx.bpp, &base->mx.sizeline, &base->mx.endian);
+	base->mx.data = (int*)mlx_get_data_addr(
+		base->mx.img,&base->mx.bpp, &base->mx.sizeline, &base->mx.endian);
 	mlx_string_put(base->mx.mlx, base->mx.win, (base->winx / 2) - 100,
 		 (base->winy / 2) - 20, 0xffffff, "PLEASE WAIT...");
 	mlx_put_image_to_window(base->mx.mlx, base->mx.win, base->mx.img, 0, 0);
@@ -37,7 +38,15 @@ t_fract	init_fract()
 			ft_putendlcolor("init_fract()", MAGENTA);
 	t_fract fr;
 
-	fr.x = fr.y = fr.i = fr.nr = fr.ni = fr.ar = fr.ai = fr.mx = fr.my = 0;
+	fr.x = 0;
+	fr.y = 0;
+	fr.i = 0;
+	fr.nr = 0; 
+	fr.ni = 0; 
+	fr.ar = 0; 
+	fr.ai = 0; 
+	fr.mx = 0; 
+	fr.my = 0;
 	fr.zoom = 1;
 	fr.cr = - 0.7;
 	fr.maxi = 10;

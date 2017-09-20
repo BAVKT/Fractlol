@@ -6,14 +6,14 @@
 #    By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/16 06:27:28 by vmercadi          #+#    #+#              #
-#    Updated: 2017/09/19 21:07:35 by vmercadi         ###   ########.fr        #
+#    Updated: 2017/09/20 21:43:56 by vmercadi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
 SRC = srcs/fractol.c srcs/init.c srcs/display.c srcs/fractals.c srcs/event.c \
-      srcs/utils.c
+      srcs/utils.c srcs/sierpinski.c
 
 INCLUDES = -I includes -I autre/minilibx_macos -I libft
 
@@ -54,10 +54,3 @@ fclean: clean
 ultra: all clean
 
 re: fclean all
-
-
-
-
-
-
-

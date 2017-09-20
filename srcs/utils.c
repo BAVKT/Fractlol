@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:48:54 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/20 14:10:45 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/20 21:43:44 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,18 @@ char	get_fractal(char *av)
 	char c;
 
 	c = 'y';
-	if (!ft_strcmp(av, "Julia") ||
+	if (!ft_strcmp(av, "Julia") || !ft_strcmp(av, "j") ||
 		!ft_strcmp(av, "julia") || !ft_strcmp(av, "J"))
 		c = 'j';
-	else if (!ft_strcmp(av, "Mandelbrot") ||
+	else if (!ft_strcmp(av, "Mandelbrot") || !ft_strcmp(av, "s") ||
 			!ft_strcmp(av, "mandelbrot") || !ft_strcmp(av, "M"))
 		c = 'm';
-	else if (!ft_strcmp(av, "Buddhabrot") ||
+	else if (!ft_strcmp(av, "Buddhabrot") || !ft_strcmp(av, "s") ||
 			!ft_strcmp(av, "buddhabrot") || !ft_strcmp(av, "B"))
 		c = 'b';
+	else if (!ft_strcmp(av, "Sierpinski") || !ft_strcmp(av, "s") ||
+			!ft_strcmp(av, "sierpinski") || !ft_strcmp(av, "S"))
+		c = 's';
 	else
 		error(2);
 	return (c);
@@ -61,6 +64,14 @@ void	clean(t_base *base)
 	mlx_destroy_window(base->mx.mlx, base->mx.win);
 	mlx_destroy_image(base->mx.mlx, base->mx.img);
 	exit(0);
+}
+
+/*
+** Reset the fractal
+*/
+void	reset()
+{
+
 }
 
 /*

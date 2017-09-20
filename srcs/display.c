@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:38:15 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/20 17:26:33 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/20 21:43:40 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	get_color(t_fract *fr)
 void	ui(t_base *base)
 {
 			ft_putendlcolor("ui()", MAGENTA);
-	int w;
+	int		w;
 
 	w = 0xffffff;
 	mlx_string_put(base->mx.mlx, base->mx.win, 50, 20, 0x00ff00, "    - KEYS -");
@@ -56,4 +56,8 @@ void	ui(t_base *base)
 	mlx_string_put(base->mx.mlx, base->mx.win, 50, 70, w, "Colors =  NumPad");
 	mlx_string_put(base->mx.mlx, base->mx.win, 50, 90, w, "Quit   =  Esc");
 	mlx_string_put(base->mx.mlx, base->mx.win, 50, 110, w, "Zoom   =  +  &  -");
+	mlx_string_put(base->mx.mlx, base->mx.win, 50, 130, w, "Reset  =  ~");
+	mlx_string_put(base->mx.mlx, base->mx.win, base->winx - 200, base->winy - 50, w,
+		ft_strjoin("Iterations = ", ft_itoa(base->fr.maxi)));
+	// mlx_string_put(base->mx.mlx, base->mx.win, base->winx - 200, base->winy - 50, w, tmp);
 }

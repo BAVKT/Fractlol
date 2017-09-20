@@ -38,13 +38,8 @@ void	julia(t_base *base, t_fract *fr)
 					break;
 				fr->i++;
 			}
-				get_color(fr);
-				px_img(base, fr);
-				if (fr->x == 1000 && fr->y == 600)
-				{
-					ft_putstr("lol");
-					ft_putnbrendl(fr->i);
-				}
+			get_color(fr);
+			px_img(base, fr);
 			fr->x++;
 		}
 		fr->y++;
@@ -74,8 +69,8 @@ void	mandelbrot(t_base *base, t_fract *fr)
 					break;
 				fr->i++;
 			}
-				get_color(fr);
-				px_img(base, fr);
+			get_color(fr);
+			px_img(base, fr);
 			fr->x++;
 		}
 		fr->y++;

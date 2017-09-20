@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/20 17:26:18 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/20 21:43:56 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,22 @@ typedef struct			s_fract
 	int					color;
 	int					maxi;			//Le nombre maximum d'iterations
 }						t_fract;
+
+typedef struct			s_sierpin
+{
+	double				x1;
+	double				y1;
+	double				x2;
+	double				y2;
+	double				x3;
+	double				y3;
+	double				a;
+	double				b;
+	double				c;
+	double				d;
+	double				e;
+	double				f;
+}						t_si;
 
 typedef struct			s_base
 {
@@ -95,11 +111,27 @@ void					init_base(t_base *base, char *av);
 t_fract					init_fract();
 
 /*
-** Various functions			 utils.c
+** Various functions			|  utils.c
 */
 
 char					get_fractal(char *av);
 void					error(int e);
 void					clean(t_base *base);
+
+/*
+** Sierpinski Fractals			|  sierpinski.c 
+*/
+
+void					sierpinski(t_base *base, t_fract *fr);
+void					triangles(t_fract *fr, int i);
+void					start_line(t_base *base, t_fract *fr);
+void					line1(t_base *base, int xx, int yy);
+void					line2(t_base *base, int xx, int yy);
+
+
+
+
+
+
 
 #endif
