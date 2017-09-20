@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/19 19:49:38 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/20 17:26:18 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "mlx.h"
 # include "libft.h"
 # include <fcntl.h>
+# include <pthread.h>
 
 typedef struct			s_mlx
 {
@@ -66,13 +67,14 @@ void					fractol(t_base *base);
 */
 
 void					julia(t_base *base, t_fract *fr);
+void					mandelbrot(t_base *base, t_fract *fr);
 
 /*
 ** UI, colors and display		| display.c
 */
 
-void					px_img(t_base *base, int x, int y, int color);
-void					get_color(t_fract *fr, int i);
+void					px_img(t_base *base, t_fract *fr);
+void					get_color(t_fract *fr);
 void					ui(t_base *base);
 
 /*
@@ -98,5 +100,6 @@ t_fract					init_fract();
 
 char					get_fractal(char *av);
 void					error(int e);
+void					clean(t_base *base);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:38:15 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/19 19:35:25 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/20 17:26:33 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,29 @@
 ** Print the pixel in the image
 */
 
-void	px_img(t_base *base, int x, int y, int color)
+void	px_img(t_base *base, t_fract *fr)
 {
-	if (x > base->winx || x < 0 || y > base->winy || y < 0)
+	if (fr->x > base->winx || fr->x < 0 || fr->y > base->winy || fr->y < 0)
 		return ;
-	base->mx.data[y * base->winx + x] = color;
+	base->mx.data[fr->y * base->winx + fr->x] = fr->color;
 }
 
 /*
 ** return the color needed for the pixel
 */
 
-void	get_color(t_fract *fr, int i)
+void	get_color(t_fract *fr)
 {
-	int r;
-	int g;
-	int b;
+	unsigned char c;
 
-	fr->color = fr->mx * fr->my;
-	r = 255 * i / fr->maxi;
-	g = 255 * i / fr->maxi;
-	b = 255 * i / fr->maxi;
-	fr->color = (fr->color | r);
-	fr->color = (fr->color << 8 | g);
-	fr->color = (fr->color << 16 | b);
+	if (fr->i == fr->maxi)
+		c = 0;
+	else
+		c = 255 * fr->i / fr->maxi;
+	fr->color = ((c & 255) << 24);
+	fr->color = ((c & 255) << 16);
+	fr->color = ((c & 255) << 8);
+	fr->color = (c & 255);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:32:42 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/19 19:57:47 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/20 17:06:26 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,10 @@ t_fract	init_fract()
 			ft_putendlcolor("init_fract()", MAGENTA);
 	t_fract fr;
 
-	fr.x = 0;
-	fr.y = 0;
-	fr.i = 0;
-	fr.nr = 0;
-	fr.ni = 0;
-	fr.ar = 0;
-	fr.ai = 0;
-	fr.mx = 0;
-	fr.my = 0;
+	fr.x = fr.y = fr.i = fr.nr = fr.ni = fr.ar = fr.ai = fr.mx = fr.my = 0;
 	fr.zoom = 1;
 	fr.cr = - 0.7;
-	fr.maxi = 100;
+	fr.maxi = 10;
 	fr.ci = 0.27015;
 	fr.color = 0xffffff;
 	return (fr);

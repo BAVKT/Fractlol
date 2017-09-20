@@ -6,7 +6,7 @@
 #    By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/16 06:27:28 by vmercadi          #+#    #+#              #
-#    Updated: 2017/09/19 19:11:45 by vmercadi         ###   ########.fr        #
+#    Updated: 2017/09/19 21:07:35 by vmercadi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ INCLUDES = -I includes -I autre/minilibx_macos -I libft
 
 CFLAGS = -Wall -Wextra -Werror $(INCLUDES)
 
-MFLAGS = -framework OpenGL -framework AppKit -L $(MLX) -lmlx
+MFLAGS = -framework OpenGL -framework AppKit -L $(MLX) -lmlx -lpthread
 
 SRCO = $(SRC:%.c=%.o)
 
