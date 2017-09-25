@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:48:54 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/25 16:20:23 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/25 17:04:39 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 void	get_fractal(char *av, t_fract *fr)
 {
 			ft_putendlcolor("get_fractal()", MAGENTA);
-	// fr->j = 0;
 	if (!ft_strcmp(av, "Julia") || !ft_strcmp(av, "j") ||
 		!ft_strcmp(av, "julia") || !ft_strcmp(av, "J"))
 		fr->j = 0;

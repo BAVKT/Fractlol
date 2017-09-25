@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/25 15:48:14 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/25 17:06:12 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void					fractol(t_base *base);
 ** Fractals algorithms			|  fractals.c
 */
 
-void					start_fract(t_base *base, t_fract *fr);
+void					start_draw(t_base *base, t_fract *fr);
 void					julia(t_base *base, t_fract *fr);
 void					mandelbrot(t_base *base, t_fract *fr);
 

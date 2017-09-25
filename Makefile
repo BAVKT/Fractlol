@@ -6,7 +6,7 @@
 #    By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/16 06:27:28 by vmercadi          #+#    #+#              #
-#    Updated: 2017/09/20 21:43:56 by vmercadi         ###   ########.fr        #
+#    Updated: 2017/09/25 20:16:03 by vmercadi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,41 +15,38 @@ NAME = fractol
 SRC = srcs/fractol.c srcs/init.c srcs/display.c srcs/fractals.c srcs/event.c \
       srcs/utils.c srcs/sierpinski.c
 
+MLX_S = autre/minilibx_macos_sierra/
+
 INCLUDES = -I includes -I autre/minilibx_macos -I libft
 
 CFLAGS = -Wall -Wextra -Werror $(INCLUDES)
 
-MFLAGS = -framework OpenGL -framework AppKit -L $(MLX) -lmlx -lpthread
+MFLAGS = -framework OpenGL -framework AppKit -L $(MLX_S) -lmlx -lpthread
 
-SRCO = $(SRC:%.c=%.o)
+SRCO = $(@SRC:%.c=%.o)
 
 LIB = libft/libft.a
-
-MLX = autre/minilibx_macos/
-
-MLX_S = autre/minilibx_macos_sierra/
 
 .PHONY: all re cleans
 
 all: $(NAME)
 
 $(NAME):$(SRCO)
-	@make -C $(MLX)
-	@make -C libft/
+	@make -s -C $(MLX_S)
+	@make -s -C libft/
 	@gcc $(FLAGS) $(LIB) -o $(NAME) $(SRC) $(MFLAGS) $(INCLUDES)
+	@echo 'Everything compiled nicely and softly !'
 
-sierra:
-	@make -C $(MLX_S)
-	@make -C libft/
-	@gcc $(FLAGS) $(LIB) -o $(NAME) $(SRC) $(MFLAGS) $(INCLUDES)
+it: all
+	./fractol M
 
 clean:
 	@rm -rf $(SRCO)
-	@make clean -C libft/
+	@make clean -s -C libft/
 
 fclean: clean
 	@rm -rf $(NAME)
-	@make fclean -C libft/
+	@make fclean -s -C libft/
 
 ultra: all clean
 

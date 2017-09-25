@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:42:28 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/25 16:44:48 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/25 17:19:00 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 void	refresh(t_base *base)
 {
 			 ft_putendlcolor("refresh()", MAGENTA);
-	start_fract(base, &base->fr);
+	start_draw(base, &base->fr);
 	mlx_put_image_to_window(base->mx.mlx, base->mx.win, base->mx.img, 0, 0);
 	ui(base);
 }

@@ -16,19 +16,16 @@
 ** Start the fractal asked by the user
 */
 
-void	start_fract(t_base *base, t_fract *fr)
+void	start_draw(t_base *base, t_fract *fr)
 {
 			ft_putendlcolor("Start_fract()", MAGENTA);
 	fr->y = 0;
 	fr->mx = (fr->j == 1) ? -0.5 : fr->mx;
-	ft_putnbrendl(fr->j);
 	while (fr->y < base->winy)
 	{
 		fr->x = 0;
 		while (fr->x < base->winx)
 		{
-			if (fr->j > 1)
-				error(3);
 			tab_fr[fr->j](base, fr);
 			get_color(fr);
 			px_img(base, fr);
