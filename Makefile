@@ -6,7 +6,7 @@
 #    By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/16 06:27:28 by vmercadi          #+#    #+#              #
-#    Updated: 2017/09/25 20:16:03 by vmercadi         ###   ########.fr        #
+#    Updated: 2017/09/25 21:27:14 by vmercadi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CFLAGS = -Wall -Wextra -Werror $(INCLUDES)
 
 MFLAGS = -framework OpenGL -framework AppKit -L $(MLX_S) -lmlx -lpthread
 
-SRCO = $(@SRC:%.c=%.o)
+SRCO = $(SRC:%.c=%.o)
 
 LIB = libft/libft.a
 

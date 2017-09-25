@@ -13,25 +13,63 @@
 #include "fractol.h"
 
 /*
-** Start the fractal asked by the user
+** Multi-threading
 */
 
-void	start_draw(t_base *base, t_fract *fr)
+void	mthread(t_base *base)
 {
-			ft_putendlcolor("Start_fract()", MAGENTA);
-	fr->y = 0;
-	fr->mx = (fr->j == 1) ? -0.5 : fr->mx;
-	while (fr->y < base->winy)
+			ft_putendlcolor("mthread()", MAGENTA);
+	pthread_t	*th;
+	t_base		*tmp;
+	int			max;
+	int			i;
+	int			j;
+
+	i = 0;
+	j = 4;
+	max = j;
+	tmp = base;
+	th = (pthread_t *)malloc(sizeof(pthread_t) * j);
+	while (i < 4)
 	{
-		fr->x = 0;
-		while (fr->x < base->winx)
+		tmp->fr.x = i * (base->winx / max);
+		tmp->winx /= j;
+		tmp->fr.y = i * (base->winy / max);
+		tmp->winy /= j;
+		pthread_create(&th[i], NULL, start_draw, NULL);
+		i++;
+		j--;
+	}
+	pthread_join(start_draw, NULL);
+}
+
+/*
+** Init and start the fractal
+*/
+
+void	start_draw(t_base *base)
+{
+			//ft_putendlcolor("Start_fract()", MAGENTA);
+	int x;
+
+	x = base->fr.x;
+	base->fr.mx = (base->fr.j == 1) ? -0.5 : base->fr.mx;
+	while (base->fr.y < base->winy)
+	{
+		base->fr.x = x;
+		while (base->fr.x < base->winx)
 		{
-			tab_fr[fr->j](base, fr);
-			get_color(fr);
-			px_img(base, fr);
-			fr->x++;
+			base->fr.nr = 0;
+			base->fr.ni = 0;
+			base->fr.ar = 0;
+			base->fr.ai = 0;
+			base->fr.i = 0;
+			tab_fr[base->fr.j](base, &base->fr);
+			get_color(&base->fr);
+			px_img(base, &base->fr);
+			base->fr.x++;
 		}
-		fr->y++;
+		base->fr.y++;
 	}
 }
 
@@ -66,7 +104,6 @@ void	mandelbrot(t_base *base, t_fract *fr)
 			// ft_putendlcolor("Mandelrot()", MAGENTA);
 	fr->cr = 1.5 * (fr->x - base->winx / 2) / (0.5 * fr->zoom * base->winx) + fr->mx;
 	fr->ci = (fr->y - base->winy / 2) / (0.5 * fr->zoom * base->winy) + fr->my;
-	fr->nr = fr->ni = fr->ar = fr->ai = fr->i = 0;
 	while(fr->i < fr->maxi)
 	{
 		fr->ar = fr->nr;
