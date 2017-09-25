@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:48:54 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/25 17:04:39 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/25 21:47:01 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	error(int e)
 		ft_putendl_fd("Wrong fractal name.", 2);
 	else if (e == 3)
 		ft_putendl_fd("ECHEC CRITIK", 2);
+	else if (e == 4)
+		ft_putendl_fd("Multithreading failed.", 2);
 	exit(1);
 }
 

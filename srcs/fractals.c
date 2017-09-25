@@ -36,11 +36,14 @@ void	mthread(t_base *base)
 		tmp->winx /= j;
 		tmp->fr.y = i * (base->winy / max);
 		tmp->winy /= j;
-		pthread_create(&th[i], NULL, start_draw, NULL);
+		if (!(pthread_create(&th[i], NULL, start_draw, NULL)));
+			error(4);
 		i++;
 		j--;
 	}
-	pthread_join(start_draw, NULL);
+	i = 0;
+	while (i < max)
+		pthread_join (&th[i++], NULL);
 }
 
 /*
