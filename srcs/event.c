@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:42:28 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/25 13:21:48 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/25 16:44:48 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,7 @@
 void	refresh(t_base *base)
 {
 			 ft_putendlcolor("refresh()", MAGENTA);
-	if (base->name == 'j')
-		julia(base, &base->fr);
-	else if (base->name == 'm')
-		mandelbrot(base, &base->fr);
-	// else if (base->name == 'b')
-	// 	buddhabrot(base, &base->fr);
-	// else if (base->name == 's')
-	// 	sierpinski(base, &base->fr);
+	start_fract(base, &base->fr);
 	mlx_put_image_to_window(base->mx.mlx, base->mx.win, base->mx.img, 0, 0);
 	ui(base);
 }
@@ -65,7 +58,7 @@ void	ev_else(int k, t_base *base)
 			ft_putendlcolor("ev_else()", MAGENTA);
 	if (k == 53)
 		clean(base);
-	else if (k == 50)
+	else if (k == 50 || k == 38 || k == 46)
 		base->fr = init_fract();
 	else if (k == 83)
 		base->fr.color = 0xff;
@@ -75,8 +68,11 @@ void	ev_else(int k, t_base *base)
 		base->fr.color = 0xbb;
 	else if (k == 86)
 		base->fr.color = 0xaa;
+	if (k == 38)
+		base->fr.j = 0;
+	if (k == 46)
+		base->fr.j = 1;
 }
-
 /*
 ** Redirect the events
 */
@@ -92,7 +88,7 @@ int		event(int keycode, void *param)
 		|| keycode == 78 || keycode == 69 || keycode == 75 || keycode == 67)
 		ev_move(keycode, base);
 	else if (keycode == 83 || keycode == 84 || keycode == 85 || keycode == 86
-		|| keycode == 53 || keycode == 50)
+		|| keycode == 53 || keycode == 50 || keycode == 38 || keycode == 46)
 		ev_else(keycode, base);
 	refresh(base);
 	return (0);

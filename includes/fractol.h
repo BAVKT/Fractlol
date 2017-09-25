@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/25 13:05:39 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/25 15:48:14 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct			s_fract
 	int					maxx;
 	int					maxy;
 	int					i;
+	int					j;
 	int					color;
 	int					maxi;			//Le nombre maximum d'iterations
 }						t_fract;
@@ -68,11 +69,12 @@ typedef struct			s_base
 {
 	struct	s_mlx		mx;
 	struct	s_fract		fr;
-	char				name;
 	int					winx;
 	int					winy;
 	int					win_size;
 }						t_base;
+
+typedef void        (*t_ft) (t_base*, t_fract*);
 
 /*
 ** Start of the program			|  fractol.c
@@ -84,6 +86,7 @@ void					fractol(t_base *base);
 ** Fractals algorithms			|  fractals.c
 */
 
+void					start_fract(t_base *base, t_fract *fr);
 void					julia(t_base *base, t_fract *fr);
 void					mandelbrot(t_base *base, t_fract *fr);
 
@@ -116,7 +119,7 @@ t_fract					init_fract();
 ** Various functions			|  utils.c
 */
 
-char					get_fractal(char *av);
+void					get_fractal(char *av, t_fract *fr);
 void					error(int e);
 void					clean(t_base *base);
 
@@ -129,5 +132,11 @@ void					triangles(t_fract *fr, int i);
 void					start_line(t_base *base, t_fract *fr);
 void					line1(t_base *base, int xx, int yy);
 void					line2(t_base *base, int xx, int yy);
+
+static const t_ft tab_fr[] =
+{
+    &julia,
+    &mandelbrot
+};
 
 #endif

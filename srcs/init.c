@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:32:42 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/25 13:21:45 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/25 16:08:00 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	init_base(t_base *base, char *av)
 {
 			ft_putendlcolor("init_base()", MAGENTA);
-	base->name = get_fractal(av);
 	base->fr = init_fract();
+	get_fractal(av, &base->fr);
 	base->winx = 2000;
 	base->winy = 1200;
 	base->mx.bpp = 8;

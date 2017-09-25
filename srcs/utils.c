@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:48:54 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/25 13:34:52 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/25 16:20:23 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,24 @@
 ** Return the the letter corresponding to the fractal
 */
 
-char	get_fractal(char *av)
+void	get_fractal(char *av, t_fract *fr)
 {
 			ft_putendlcolor("get_fractal()", MAGENTA);
-	char c;
-
-	c = 'y';
+	// fr->j = 0;
 	if (!ft_strcmp(av, "Julia") || !ft_strcmp(av, "j") ||
 		!ft_strcmp(av, "julia") || !ft_strcmp(av, "J"))
-		c = 'j';
-	else if (!ft_strcmp(av, "Mandelbrot") || !ft_strcmp(av, "s") ||
+		fr->j = 0;
+	else if (!ft_strcmp(av, "Mandelbrot") || !ft_strcmp(av, "m") ||
 			!ft_strcmp(av, "mandelbrot") || !ft_strcmp(av, "M"))
-		c = 'm';
-	else if (!ft_strcmp(av, "Buddhabrot") || !ft_strcmp(av, "s") ||
+		fr->j = 1;
+	else if (!ft_strcmp(av, "Buddhabrot") || !ft_strcmp(av, "b") ||
 			!ft_strcmp(av, "buddhabrot") || !ft_strcmp(av, "B"))
-		c = 'b';
+		fr->j = 2;
 	else if (!ft_strcmp(av, "Sierpinski") || !ft_strcmp(av, "s") ||
 			!ft_strcmp(av, "sierpinski") || !ft_strcmp(av, "S"))
-		c = 's';
+		fr->j = 3;
 	else
 		error(2);
-	return (c);
 }
 
 /*
@@ -55,6 +52,8 @@ void	error(int e)
 		ft_putendl_fd("Wrong number of arguments.", 2);
 	else if (e == 2)
 		ft_putendl_fd("Wrong fractal name.", 2);
+	else if (e == 3)
+		ft_putendl_fd("ECHEC CRITIK", 2);
 	exit(1);
 }
 
@@ -69,38 +68,17 @@ void	clean(t_base *base)
 	exit(0);
 }
 
-/*
-** Multi-threading
-*/
+// /*
+// ** Multi-threading
+// */
 
-void	mthread()
-{
-    pthread_t	th[8];
-    int			i;
+// void	mthread()
+// {
+//     pthread_t	th[8];
+//     int			i;
 
-    i = 0;
-    while (i < 8)
-	    pthread_create(&th[i++], NULL, myThreadFun, NULL);
+//     i = 0;
+//     while (i < 8)
+// 	    pthread_create(&th[i++], NULL, julia, NULL);
 
-
-}
-
-
-// A normal C function that is executed as a thread 
-// when its name is specified in pthread_create()
-void *myThreadFun(void *vargp)
-{
-    sleep(1);
-    printf("Printing GeeksQuiz from Thread \n");
-    return NULL;
-}
-  
-int main()
-{
-    pthread_t tid;
-    printf("Before Thread\n");
-    pthread_create(&tid, NULL, myThreadFun, NULL);
-    pthread_join(tid, NULL);
-    printf("After Thread\n");
-    exit(0);
-}
+// }
