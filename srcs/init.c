@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:32:42 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/20 21:43:43 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/25 13:21:45 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ t_fract	init_fract()
 	fr.x = 0;
 	fr.y = 0;
 	fr.i = 0;
-	fr.nr = 0; 
-	fr.ni = 0; 
-	fr.ar = 0; 
-	fr.ai = 0; 
-	fr.mx = 0; 
+	fr.nr = 0;
+	fr.ni = 0;
+	fr.ar = 0;
+	fr.ai = 0;
+	fr.mx = 0;
 	fr.my = 0;
 	fr.zoom = 1;
 	fr.cr = - 0.7;

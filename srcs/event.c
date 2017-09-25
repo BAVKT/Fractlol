@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:42:28 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/20 21:43:41 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/25 13:21:48 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	ev_move(int k, t_base *base)
 
 void	ev_else(int k, t_base *base)
 {
+			ft_putendlcolor("ev_else()", MAGENTA);
 	if (k == 53)
 		clean(base);
 	else if (k == 50)
@@ -91,7 +92,7 @@ int		event(int keycode, void *param)
 		|| keycode == 78 || keycode == 69 || keycode == 75 || keycode == 67)
 		ev_move(keycode, base);
 	else if (keycode == 83 || keycode == 84 || keycode == 85 || keycode == 86
-		|| keycode == 53)
+		|| keycode == 53 || keycode == 50)
 		ev_else(keycode, base);
 	refresh(base);
 	return (0);

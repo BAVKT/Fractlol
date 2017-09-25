@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 16:38:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/20 21:43:55 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/25 13:29:55 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int		main(int ac, char **av)
 
 	if (ac != 2)
 		error(1);
+	if (!ft_strcmp(av[1], "usage"))
+		error(0);
 	init_base(&base, av[1]);
 	fractol(&base);
 	return (0);

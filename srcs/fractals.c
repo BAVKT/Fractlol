@@ -56,6 +56,7 @@ void	mandelbrot(t_base *base, t_fract *fr)
 		fr->x = 0;
 		while(fr->x < base->winx)
 		{
+		fnction mandelbrot
 			fr->cr = 1.5 * (fr->x - base->winx / 2) / (0.5 * fr->zoom * base->winx) + fr->mx;
 			fr->ci = (fr->y - base->winy / 2) / (0.5 * fr->zoom * base->winy) + fr->my;
 			fr->nr = fr->ni = fr->ar = fr->ai = fr->i = 0;

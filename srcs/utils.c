@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:48:54 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/20 21:43:44 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/25 13:34:52 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,13 @@ char	get_fractal(char *av)
 
 void	error(int e)
 {
-	ft_putstr_fd("Error : ", 2);
 	if (e == 0)
+	{
 		ft_putendl_fd("Usage : ./fractol FractalName", 2);		
-	else if (e == 1)
+		exit(1);
+	}
+	ft_putstr_fd("Error : ", 2);
+	if (e == 1)
 		ft_putendl_fd("Wrong number of arguments.", 2);
 	else if (e == 2)
 		ft_putendl_fd("Wrong fractal name.", 2);
@@ -56,7 +59,7 @@ void	error(int e)
 }
 
 /*
-** Free all the tabs
+** Free all the tabs needed
 */
 
 void	clean(t_base *base)
@@ -67,18 +70,37 @@ void	clean(t_base *base)
 }
 
 /*
-** Reset the fractal
-*/
-void	reset()
-{
-
-}
-
-/*
 ** Multi-threading
 */
 
 void	mthread()
 {
-	
+    pthread_t	th[8];
+    int			i;
+
+    i = 0;
+    while (i < 8)
+	    pthread_create(&th[i++], NULL, myThreadFun, NULL);
+
+
+}
+
+
+// A normal C function that is executed as a thread 
+// when its name is specified in pthread_create()
+void *myThreadFun(void *vargp)
+{
+    sleep(1);
+    printf("Printing GeeksQuiz from Thread \n");
+    return NULL;
+}
+  
+int main()
+{
+    pthread_t tid;
+    printf("Before Thread\n");
+    pthread_create(&tid, NULL, myThreadFun, NULL);
+    pthread_join(tid, NULL);
+    printf("After Thread\n");
+    exit(0);
 }

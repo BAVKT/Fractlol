@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/20 21:43:56 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/25 13:05:39 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct			s_fract
 	double				my;				//pour les deplacements y
 	int					x;
 	int					y;
+	int					maxx;
+	int					maxy;
 	int					i;
 	int					color;
 	int					maxi;			//Le nombre maximum d'iterations
@@ -127,11 +129,5 @@ void					triangles(t_fract *fr, int i);
 void					start_line(t_base *base, t_fract *fr);
 void					line1(t_base *base, int xx, int yy);
 void					line2(t_base *base, int xx, int yy);
-
-
-
-
-
-
 
 #endif
