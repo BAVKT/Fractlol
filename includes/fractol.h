@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/25 21:13:19 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/26 18:53:47 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include <fcntl.h>
 # include <pthread.h>
+# define NBTH 4
 
 typedef struct			s_mlx
 {
@@ -47,6 +48,9 @@ typedef struct			s_fract
 	int					j;
 	int					color;
 	int					maxi;			//Le nombre maximum d'iterations
+	int					winx;
+	int					winy;
+	int					*data;			//Pointe sur le vrai data de la struct mlx
 }						t_fract;
 
 typedef struct			s_sierpin
@@ -65,16 +69,19 @@ typedef struct			s_sierpin
 	double				f;
 }						t_si;
 
+
 typedef struct			s_base
 {
 	struct	s_mlx		mx;
-	struct	s_fract		fr;
+	struct	s_fract		fr[NBTH];
+	struct	s_fract		frfr;
 	int					winx;
 	int					winy;
 	int					win_size;
+	char				*av;
 }						t_base;
 
-typedef void        (*t_ft) (t_base*, t_fract*);
+typedef void        (*t_ft) (t_fract*);
 
 /*
 ** Start of the program			|  fractol.c
@@ -86,15 +93,15 @@ void					fractol(t_base *base);
 ** Fractals algorithms			|  fractals.c
 */
 
-void					start_draw(t_base *base);
-void					julia(t_base *base, t_fract *fr);
-void					mandelbrot(t_base *base, t_fract *fr);
+void					*start_draw(void *base);
+void					julia(t_fract *fr);
+void					mandelbrot(t_fract *fr);
 
 /*
 ** UI, colors and display		| display.c
 */
 
-void					px_img(t_base *base, t_fract *fr);
+void					px_img(t_fract *fr);
 void					get_color(t_fract *fr);
 void					ui(t_base *base);
 
@@ -112,7 +119,8 @@ void					ev_else(int k, t_base * base);
 */
 
 void					init_base(t_base *base, char *av);
-t_fract					init_fract();
+t_fract					init_fract(t_base *base);
+t_fract					init_fracthr(t_base *base);
 
 /*
 ** Various functions			|  utils.c

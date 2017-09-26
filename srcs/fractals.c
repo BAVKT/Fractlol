@@ -19,72 +19,71 @@
 void	mthread(t_base *base)
 {
 			ft_putendlcolor("mthread()", MAGENTA);
-	pthread_t	*th;
-	t_base		*tmp;
-	int			max;
+	pthread_t	th[NBTH];
 	int			i;
 	int			j;
 
 	i = 0;
-	j = 4;
-	max = j;
-	tmp = base;
-	th = (pthread_t *)malloc(sizeof(pthread_t) * j);
-	while (i < 4)
+	j = NBTH;
+	while (i < NBTH)
 	{
-		tmp->fr.x = i * (base->winx / max);
-		tmp->winx /= j;
-		tmp->fr.y = i * (base->winy / max);
-		tmp->winy /= j;
-		if (!(pthread_create(&th[i], NULL, start_draw, NULL)));
+		base->fr[i] = init_fracthr(base);
+		base->fr[i].x = i * (base->fr[i].winx / NBTH);
+		base->fr[i].winx = j * (base->winx / NBTH);
+		base->fr[i].y = i * (base->fr[i].winy / NBTH);
+		base->fr[i].winy = j * (base->winy / NBTH);
+		if (pthread_create(&th[i], NULL, start_draw, (void *)&base->fr[i]))
 			error(4);
 		i++;
 		j--;
 	}
 	i = 0;
-	while (i < max)
-		pthread_join (&th[i++], NULL);
+	while (i < NBTH)
+		pthread_join(th[i++], NULL);
 }
 
 /*
 ** Init and start the fractal
 */
 
-void	start_draw(t_base *base)
+void	*start_draw(void *tmp)
 {
 			//ft_putendlcolor("Start_fract()", MAGENTA);
-	int x;
+	int		x;       
+	t_fract *fr;
 
-	x = base->fr.x;
-	base->fr.mx = (base->fr.j == 1) ? -0.5 : base->fr.mx;
-	while (base->fr.y < base->winy)
+	fr = (t_fract*)tmp;
+	x = fr->x;
+	fr->mx = (fr->j == 1) ? -0.5 : fr->mx;
+	while (fr->y < fr->winy)
 	{
-		base->fr.x = x;
-		while (base->fr.x < base->winx)
+		fr->x = x;
+		while (fr->x < fr->winx)
 		{
-			base->fr.nr = 0;
-			base->fr.ni = 0;
-			base->fr.ar = 0;
-			base->fr.ai = 0;
-			base->fr.i = 0;
-			tab_fr[base->fr.j](base, &base->fr);
-			get_color(&base->fr);
-			px_img(base, &base->fr);
-			base->fr.x++;
+			fr->nr = 0;
+			fr->ni = 0;
+			fr->ar = 0;
+			fr->ai = 0;
+			fr->i = 0;
+			tab_fr[fr->j](fr);
+			get_color(fr);
+			px_img(fr);
+			fr->x++;
 		}
-		base->fr.y++;
+		fr->y++;
 	}
+	pthread_exit(0);
 }
 
 /*
 ** Algorithm for the Julia fractal
 */
 
-void	julia(t_base *base, t_fract *fr)
+void	julia(t_fract *fr)
 {
 			//ft_putendlcolor("Julia()", MAGENTA);
-	fr->nr = 1.5 * (fr->x - base->winx / 2) / (0.5 * fr->zoom * base->winx) + fr->mx;
-	fr->ni = (fr->y - base->winy / 2) / (0.5 * fr->zoom * base->winy) + fr->my;
+	fr->nr = 1.5 * (fr->x - fr->winx / 2) / (0.5 * fr->zoom * fr->winx) + fr->mx;
+	fr->ni = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
 	fr->i = 0;
 	while (fr->i < fr->maxi)
 	{
@@ -102,11 +101,11 @@ void	julia(t_base *base, t_fract *fr)
 ** Algorithm for the Mandelbrot fractal
 */
 
-void	mandelbrot(t_base *base, t_fract *fr)
+void	mandelbrot(t_fract *fr)
 {
 			// ft_putendlcolor("Mandelrot()", MAGENTA);
-	fr->cr = 1.5 * (fr->x - base->winx / 2) / (0.5 * fr->zoom * base->winx) + fr->mx;
-	fr->ci = (fr->y - base->winy / 2) / (0.5 * fr->zoom * base->winy) + fr->my;
+	fr->cr = 1.5 * (fr->x - fr->winx / 2) / (0.5 * fr->zoom * fr->winx) + fr->mx;
+	fr->ci = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
 	while(fr->i < fr->maxi)
 	{
 		fr->ar = fr->nr;

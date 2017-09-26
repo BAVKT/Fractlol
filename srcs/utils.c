@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:48:54 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/25 21:47:01 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/26 18:19:16 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 void	get_fractal(char *av, t_fract *fr)
 {
-			ft_putendlcolor("get_fractal()", MAGENTA);
+			//ft_putendlcolor("get_fractal()", MAGENTA);
 	if (!ft_strcmp(av, "Julia") || !ft_strcmp(av, "j") ||
 		!ft_strcmp(av, "julia") || !ft_strcmp(av, "J"))
 		fr->j = 0;
@@ -68,18 +68,3 @@ void	clean(t_base *base)
 	mlx_destroy_image(base->mx.mlx, base->mx.img);
 	exit(0);
 }
-
-// /*
-// ** Multi-threading
-// */
-
-// void	mthread()
-// {
-//     pthread_t	th[8];
-//     int			i;
-
-//     i = 0;
-//     while (i < 8)
-// 	    pthread_create(&th[i++], NULL, julia, NULL);
-
-// }

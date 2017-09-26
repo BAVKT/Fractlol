@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:38:15 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/25 20:23:47 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/26 16:48:06 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 ** Print the pixel in the image
 */
 
-void	px_img(t_base *base, t_fract *fr)
+void	px_img(t_fract *fr)
 {
-	if (fr->x > base->winx || fr->x < 0 || fr->y > base->winy || fr->y < 0)
+	if (fr->x > fr->winx || fr->x < 0 || fr->y > fr->winy || fr->y < 0)
 		return ;
-	base->mx.data[fr->y * base->winx + fr->x] = fr->color;
+	fr->data[fr->y * fr->winx + fr->x] = fr->color;
 }
 
 /*
@@ -59,7 +59,7 @@ void	ui(t_base *base)
 	mlx_string_put(base->mx.mlx, base->mx.win, 50, 110, w, "Zoom   =  +  &  -");
 	mlx_string_put(base->mx.mlx, base->mx.win, 50, 130, w, "Reset  =  ~");
 	mlx_string_put(base->mx.mlx, base->mx.win, base->winx - 190, base->winy - 30,
-		w, ft_strjoin("Iterations = ", ft_itoa(base->fr.maxi)));
+		w, ft_strjoin("Iterations = ", ft_itoa(base->fr[0].maxi)));
 	mlx_string_put(base->mx.mlx, base->mx.win, base->winx - 190, base->winy - 50,
-		w, ft_strjoin("Zoom       = ", ft_strjoin(ft_itoa(base->fr.zoom * 100), "%")));
+		w, ft_strjoin("Zoom       = ", ft_strjoin(ft_itoa(base->fr[0].zoom * 100), "%")));
 }
