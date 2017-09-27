@@ -22,16 +22,16 @@ void	mthread(t_base *base)
 	pthread_t	th[NBTH];
 	int			i;
 	int			j;
+	int			size;
 
 	i = 0;
 	j = NBTH;
+	size = base->winy / NBTH;
 	while (i < NBTH)
 	{
 		base->fr[i] = init_fracthr(base);
-		base->fr[i].x = i * (base->fr[i].winx / NBTH);
-		base->fr[i].winx = j * (base->winx / NBTH);
-		base->fr[i].y = i * (base->fr[i].winy / NBTH);
-		base->fr[i].winy = j * (base->winy / NBTH);
+		base->fr[i].y = i * size;
+		base->fr[i].twiny = (i + 1) * size;
 		if (pthread_create(&th[i], NULL, start_draw, (void *)&base->fr[i]))
 			error(4);
 		i++;
@@ -55,7 +55,7 @@ void	*start_draw(void *tmp)
 	fr = (t_fract*)tmp;
 	x = fr->x;
 	fr->mx = (fr->j == 1) ? -0.5 : fr->mx;
-	while (fr->y < fr->winy)
+	while (fr->y < fr->twiny)
 	{
 		fr->x = x;
 		while (fr->x < fr->winx)
@@ -86,7 +86,7 @@ void	julia(t_fract *fr)
 	fr->ni = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
 	fr->i = 0;
 	while (fr->i < fr->maxi)
-	{
+	{			
 		fr->ar = fr->nr;
 		fr->ai = fr->ni;
 		fr->nr = fr->ar * fr->ar - fr->ai * fr->ai + fr->cr;

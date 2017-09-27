@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:42:28 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/26 18:40:52 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/27 19:48:27 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,21 @@ void	ev_move(int k, t_base *base)
 {
 			ft_putendlcolor("ev_move()", MAGENTA);
 	if (k == 69)
-		base->frfr.zoom += 0.1;
-	else if (k == 78)
-		base->frfr.zoom -= 0.1;
-	else if (k == 67 && base->frfr.maxi < 100)
-		base->frfr.maxi += 2;
+		base->frfr.zoom += 0.1 * base->frfr.zoom;
+	else if (k == 78 && base->frfr.zoom > 0.2)
+		base->frfr.zoom -= 0.1 * base->frfr.zoom;
+	else if (k == 67 && base->frfr.maxi < 200)
+		base->frfr.maxi += 1;
 	else if (k == 75 && base->frfr.maxi > 5)
-		base->frfr.maxi -= 2;
+		base->frfr.maxi -= 1;
 	else if (k == 126)
-		base->frfr.my += 0.1 / base->frfr.zoom;
+		base->frfr.my += 0.2 / base->frfr.zoom;
 	else if (k == 125)
-		base->frfr.my -= 0.1 / base->frfr.zoom;
+		base->frfr.my -= 0.2 / base->frfr.zoom;
 	else if (k == 124)
-		base->frfr.mx += 0.1 / base->frfr.zoom;
+		base->frfr.mx += 0.2 / base->frfr.zoom;
 	else if (k == 123)
-		base->frfr.mx -= 0.1 / base->frfr.zoom;
+		base->frfr.mx -= 0.2 / base->frfr.zoom;
 }
 
 /*
@@ -73,6 +73,7 @@ void	ev_else(int k, t_base *base)
 	if (k == 46)
 		base->frfr.j = 1;
 }
+
 /*
 ** Redirect the events
 */

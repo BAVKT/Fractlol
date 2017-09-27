@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/26 18:53:47 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/27 19:31:16 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "libft.h"
 # include <fcntl.h>
 # include <pthread.h>
-# define NBTH 4
+# define NBTH 8
 
 typedef struct			s_mlx
 {
@@ -50,6 +50,7 @@ typedef struct			s_fract
 	int					maxi;			//Le nombre maximum d'iterations
 	int					winx;
 	int					winy;
+	int					twiny;			//temporaire winy
 	int					*data;			//Pointe sur le vrai data de la struct mlx
 }						t_fract;
 
