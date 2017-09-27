@@ -18,14 +18,12 @@
 
 void	mthread(t_base *base)
 {
-			ft_putendlcolor("mthread()", MAGENTA);
+			//ft_putendlcolor("mthread()", MAGENTA);
 	pthread_t	th[NBTH];
 	int			i;
-	int			j;
 	int			size;
 
 	i = 0;
-	j = NBTH;
 	size = base->winy / NBTH;
 	while (i < NBTH)
 	{
@@ -35,7 +33,6 @@ void	mthread(t_base *base)
 		if (pthread_create(&th[i], NULL, start_draw, (void *)&base->fr[i]))
 			error(4);
 		i++;
-		j--;
 	}
 	i = 0;
 	while (i < NBTH)
@@ -49,7 +46,7 @@ void	mthread(t_base *base)
 void	*start_draw(void *tmp)
 {
 			//ft_putendlcolor("Start_fract()", MAGENTA);
-	int		x;       
+	int		x;
 	t_fract *fr;
 
 	fr = (t_fract*)tmp;

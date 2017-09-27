@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:42:28 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/27 19:48:27 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/27 20:15:23 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 void	refresh(t_base *base)
 {
-			 ft_putendlcolor("refresh()", MAGENTA);
+			 //ft_putendlcolor("refresh()", MAGENTA);
 	mthread(base);
 	mlx_put_image_to_window(base->mx.mlx, base->mx.win, base->mx.img, 0, 0);
 	ui(base);
@@ -30,7 +30,7 @@ void	refresh(t_base *base)
 
 void	ev_move(int k, t_base *base)
 {
-			ft_putendlcolor("ev_move()", MAGENTA);
+			//ft_putendlcolor("ev_move()", MAGENTA);
 	if (k == 69)
 		base->frfr.zoom += 0.1 * base->frfr.zoom;
 	else if (k == 78 && base->frfr.zoom > 0.2)
@@ -44,9 +44,9 @@ void	ev_move(int k, t_base *base)
 	else if (k == 125)
 		base->frfr.my -= 0.2 / base->frfr.zoom;
 	else if (k == 124)
-		base->frfr.mx += 0.2 / base->frfr.zoom;
+		base->frfr.mx += 0.2;
 	else if (k == 123)
-		base->frfr.mx -= 0.2 / base->frfr.zoom;
+		base->frfr.mx -= 0.2;
 }
 
 /*
@@ -84,7 +84,7 @@ int		event(int keycode, void *param)
 	t_base *base;
 		
 	base = (t_base *)param;
-			ft_putnbrendl(keycode);
+			//ft_putnbrendl(keycode);
 	if (keycode == 126 || keycode == 125 || keycode == 124 || keycode == 123
 		|| keycode == 78 || keycode == 69 || keycode == 75 || keycode == 67)
 		ev_move(keycode, base);
