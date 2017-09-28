@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 16:38:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/28 17:34:58 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/28 17:44:40 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
 void	refresh(t_base *base)
 {
 			 // ft_putendlcolor("refresh()", MAGENTA);
-	mlx_string_put(base->mx.mlx, base->mx.win, (base->winx / 2) - 100,
-		 (base->winy / 2) - 20, 0xffffff, "PLEASE WAIT...");
-	mlx_put_image_to_window(base->mx.mlx, base->mx.win, base->mx.img, 0, 0);
 	mthread(base);
 	mlx_put_image_to_window(base->mx.mlx, base->mx.win, base->mx.img, 0, 0);
 	ui(base);

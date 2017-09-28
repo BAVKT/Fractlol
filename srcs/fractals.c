@@ -47,12 +47,13 @@ void	*start_draw(void *tmp)
 {
 			//ft_putendlcolor("Start_fract()", MAGENTA);
 	t_fract *fr;
+	int		x;
 
 	fr = (t_fract*)tmp;
-	fr->y = 0;
+	x = fr->x;
 	while (fr->y < fr->twiny)
 	{
-		fr->x = 0;
+		fr->x = x;
 		while (fr->x < fr->winx)
 		{
 			fr->nr = 0;

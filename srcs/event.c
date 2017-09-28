@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:42:28 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/28 17:33:03 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/28 17:42:51 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@
 
 int		evmv_mouse(int x, int y, t_base *base)
 {
-	base->frfr.sx = (((long double)x - base->winx / 2) / 150);
-	base->frfr.sy = (((long double)y - base->winy / 2) / 150);
-	refresh(base);
+	x = y = base->winx;
+	// base->frfr.sx = (((long double)x - base->winx / 2) / 150);
+	// base->frfr.sy = (((long double)y - base->winy / 2) / 150);
+	// 	ft_putnbrendl(base->frfr.sx);
+	// 	ft_putnbrendl(base->frfr.sy);
+	// refresh(base);
 	return (0);
 }
 
@@ -67,6 +70,8 @@ void	ev_move(int k, t_base *base)
 		base->frfr.mx += 0.2 / base->frfr.zoom;
 	else if (k == 123)
 		base->frfr.mx -= 0.2 / base->frfr.zoom;
+	refresh(base);
+
 }
 
 /*
@@ -92,6 +97,7 @@ void	ev_else(int k, t_base *base)
 		base->frfr.j = 0;
 	if (k == 46)
 		base->frfr.j = 1;
+	refresh(base);
 }
 
 /*
@@ -111,6 +117,5 @@ int		event(int keycode, void *param)
 	else if (keycode == 83 || keycode == 84 || keycode == 85 || keycode == 86
 		|| keycode == 53 || keycode == 50 || keycode == 38 || keycode == 46)
 		ev_else(keycode, base);
-	refresh(base);
 	return (0);
 }
