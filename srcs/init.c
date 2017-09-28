@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:32:42 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/28 17:37:59 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/28 20:36:41 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ void	init_base(t_base *base, char *av)
 {
 			ft_putendlcolor("init_base()", MAGENTA);
 	base->av = ft_strdup(av);
-	base->winx = 2000;
-	base->winy = 1200;
+	base->winx = 1500;
+	base->winy = 1000;
 	base->mx.bpp = 8;
 	base->mx.endian = 0;
 	base->win_size = base->winx * base->winy;
+	base->mouse = 1;
 	base->mx.sizeline = base->winy;
 	base->frfr = init_fract(base);
 	base->mx.mlx = mlx_init();
@@ -50,11 +51,14 @@ t_fract	init_fract(t_base *base)
 	fr.my = 0;
 	fr.sx = 0;
 	fr.sy = 0;
-	fr.zoom = 1.2;
+	fr.zoom = 1;
 	fr.cr = 0.7;
 	fr.maxi = 10;
 	fr.ci = 0.27015;
 	fr.color = 0xffffff;
+	fr.r = 70;
+	fr.g = 70;
+	fr.b = 70;
 	get_fractal(base->av, &fr);
 	return (fr);
 }
@@ -80,6 +84,9 @@ t_fract	init_fracthr(t_base *base)
 	fr.maxi = base->frfr.maxi;
 	fr.ci = base->frfr.ci;
 	fr.color = base->frfr.color;
+	fr.r = base->frfr.r;
+	fr.g = base->frfr.g;
+	fr.b = base->frfr.b;
 	fr.winx = base->winx;
 	fr.winy = base->winy;
 	fr.data = base->mx.data;

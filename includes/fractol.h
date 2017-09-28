@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/28 17:43:18 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/28 19:35:36 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ typedef struct			s_fract
 	int					maxy;
 	int					i;
 	int					j;
-	int					color;
+	unsigned char		r;
+	unsigned char		g;
+	unsigned char		b;
+	unsigned int		color;
 	int					maxi;			//Le nombre maximum d'iterations
 	int					winx;
 	int					winy;
@@ -78,10 +81,11 @@ typedef struct			s_base
 	struct	s_mlx		mx;
 	struct	s_fract		fr[NBTH];
 	struct	s_fract		frfr;
+	char				*av;
 	int					winx;
 	int					winy;
 	int					win_size;
-	char				*av;
+	int					mouse;
 }						t_base;
 
 typedef void        (*t_ft) (t_fract*);

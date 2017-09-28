@@ -82,9 +82,9 @@ void	julia(t_fract *fr)
 	fr->ni = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
 	fr->i = 0;
 	while (fr->i < fr->maxi)
-	{			
-		fr->ar = fr->nr;
-		fr->ai = fr->ni;
+	{
+		fr->ar = fr->nr + fr->sx;
+		fr->ai = fr->ni	+ fr->sy;
 		fr->nr = fr->ar * fr->ar - fr->ai * fr->ai + fr->cr;
 		fr->ni = 2 * fr->ar * fr->ai + fr->ci;
 		if((fr->nr * fr->nr + fr->ni * fr->ni) > 4)
@@ -104,8 +104,8 @@ void	mandelbrot(t_fract *fr)
 	fr->ci = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
 	while(fr->i < fr->maxi)
 	{
-		fr->ar = fr->nr;
-		fr->ai = fr->ni;
+		fr->ar = fr->nr + fr->sx;
+		fr->ai = fr->ni	+ fr->sy;
 		fr->nr = fr->ar * fr->ar - fr->ai * fr->ai + fr->cr;
 		fr->ni = 2 * fr->ar * fr->ai + fr->ci;
 		if((fr->nr * fr->nr + fr->ni * fr->ni) > 4)

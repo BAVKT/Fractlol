@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:42:28 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/28 17:42:51 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/28 20:41:10 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 
 int		evmv_mouse(int x, int y, t_base *base)
 {
-	x = y = base->winx;
-	// base->frfr.sx = (((long double)x - base->winx / 2) / 150);
-	// base->frfr.sy = (((long double)y - base->winy / 2) / 150);
-	// 	ft_putnbrendl(base->frfr.sx);
-	// 	ft_putnbrendl(base->frfr.sy);
-	// refresh(base);
+	if (base->mouse)
+	{
+		base->frfr.sx = (((double)x - base->winx / 2) / 150);
+		base->frfr.sy = (((double)y - base->winy / 2) / 150);
+	}
+	refresh(base);
 	return (0);
 }
 
@@ -33,16 +33,18 @@ int		evmv_mouse(int x, int y, t_base *base)
 
 int		ev_mouse(int k, int x, int y, void *param)
 {
-			 // ft_putendlcolor("ev_mouse()", MAGENTA);			
+			 ft_putendlcolor("ev_mouse()", MAGENTA);			
 	t_base *base;
 		
 	base = (t_base *)param;
-	if (k == 5555)
-		x = 0;
-	y = 0;
-			// ft_putnbrendl(k);
-			// ft_putnbrendl(x);
-			// ft_putnbrendl(y);
+	if (k == 1)
+		base->frfr.color = (x + y) / 255;
+	else if (k == 4)
+		base->frfr.zoom += 0.1 * base->frfr.zoom;
+	else if (k == 4)
+		base->frfr.zoom += 0.1 * base->frfr.zoom;
+	else if (k == 5)
+		base->frfr.zoom -= 0.1 * base->frfr.zoom;
 	refresh(base);
 	return (0);
 }
@@ -53,11 +55,11 @@ int		ev_mouse(int k, int x, int y, void *param)
 
 void	ev_move(int k, t_base *base)
 {
-			//ft_putendlcolor("ev_move()", MAGENTA);
+			ft_putendlcolor("ev_move()", MAGENTA);
 	if (k == 69)
-		base->frfr.zoom += 0.1 * base->frfr.zoom;
+		base->frfr.zoom += 0.2 * base->frfr.zoom;
 	else if (k == 78 && base->frfr.zoom > 0.2)
-		base->frfr.zoom -= 0.1 * base->frfr.zoom;
+		base->frfr.zoom -= 0.2 * base->frfr.zoom;
 	else if (k == 67 && base->frfr.maxi < 200)
 		base->frfr.maxi += 1;
 	else if (k == 75 && base->frfr.maxi > 5)
@@ -67,9 +69,9 @@ void	ev_move(int k, t_base *base)
 	else if (k == 125)
 		base->frfr.my -= 0.2 / base->frfr.zoom;
 	else if (k == 124)
-		base->frfr.mx += 0.2 / base->frfr.zoom;
-	else if (k == 123)
 		base->frfr.mx -= 0.2 / base->frfr.zoom;
+	else if (k == 123)
+		base->frfr.mx += 0.2 / base->frfr.zoom;
 	refresh(base);
 
 }
@@ -85,14 +87,20 @@ void	ev_else(int k, t_base *base)
 		clean(base);
 	else if (k == 50 || k == 38 || k == 46)
 		base->frfr = init_fract(base);
-	else if (k == 83)
-		base->frfr.color = 0xff;
-	else if (k == 84)
-		base->frfr.color = 0xee;
-	else if (k == 85)
-		base->frfr.color = 0xbb;
 	else if (k == 86)
-		base->frfr.color = 0xaa;
+		base->frfr.r += 1;
+	else if (k == 87)
+		base->frfr.g += 1;
+	else if (k == 88)
+		base->frfr.b += 1;
+	else if (k == 83)
+		base->frfr.r -= 1;
+	else if (k == 84)
+		base->frfr.g -= 1;
+	else if (k == 85)
+		base->frfr.b -= 1;
+	else if (k == 49)
+		base->mouse = (base->mouse == 1) ? 0 : 1;
 	if (k == 38)
 		base->frfr.j = 0;
 	if (k == 46)
@@ -114,8 +122,9 @@ int		event(int keycode, void *param)
 	if (keycode == 126 || keycode == 125 || keycode == 124 || keycode == 123
 		|| keycode == 78 || keycode == 69 || keycode == 75 || keycode == 67)
 		ev_move(keycode, base);
-	else if (keycode == 83 || keycode == 84 || keycode == 85 || keycode == 86
-		|| keycode == 53 || keycode == 50 || keycode == 38 || keycode == 46)
+	else if (keycode == 83 || keycode == 84 || keycode == 85 || keycode == 49
+		|| keycode == 53 || keycode == 50 || keycode == 38 || keycode == 46
+		|| keycode == 86 || keycode == 87 || keycode == 88 )
 		ev_else(keycode, base);
 	return (0);
 }
