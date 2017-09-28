@@ -6,22 +6,42 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:42:28 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/27 20:15:23 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/28 17:33:03 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 /*
-** Clear the current image, draw the new one and display it
+** Catch the mouses movments
 */
 
-void	refresh(t_base *base)
+int		evmv_mouse(int x, int y, t_base *base)
 {
-			 //ft_putendlcolor("refresh()", MAGENTA);
-	mthread(base);
-	mlx_put_image_to_window(base->mx.mlx, base->mx.win, base->mx.img, 0, 0);
-	ui(base);
+	base->frfr.sx = (((long double)x - base->winx / 2) / 150);
+	base->frfr.sy = (((long double)y - base->winy / 2) / 150);
+	refresh(base);
+	return (0);
+}
+
+/*
+** Mouse events
+*/
+
+int		ev_mouse(int k, int x, int y, void *param)
+{
+			 // ft_putendlcolor("ev_mouse()", MAGENTA);			
+	t_base *base;
+		
+	base = (t_base *)param;
+	if (k == 5555)
+		x = 0;
+	y = 0;
+			// ft_putnbrendl(k);
+			// ft_putnbrendl(x);
+			// ft_putnbrendl(y);
+	refresh(base);
+	return (0);
 }
 
 /*
@@ -44,9 +64,9 @@ void	ev_move(int k, t_base *base)
 	else if (k == 125)
 		base->frfr.my -= 0.2 / base->frfr.zoom;
 	else if (k == 124)
-		base->frfr.mx += 0.2;
+		base->frfr.mx += 0.2 / base->frfr.zoom;
 	else if (k == 123)
-		base->frfr.mx -= 0.2;
+		base->frfr.mx -= 0.2 / base->frfr.zoom;
 }
 
 /*

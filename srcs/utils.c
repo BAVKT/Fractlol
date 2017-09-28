@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:48:54 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/27 20:03:39 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/28 17:30:35 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,10 @@ void	error(int e)
 ** Free all the tabs needed
 */
 
-void	clean(t_base *base)
+int		clean(t_base *base)
 {
 	mlx_destroy_window(base->mx.mlx, base->mx.win);
 	mlx_destroy_image(base->mx.mlx, base->mx.img);
 	exit(0);
+	return (0);
 }

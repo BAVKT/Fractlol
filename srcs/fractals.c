@@ -18,7 +18,7 @@
 
 void	mthread(t_base *base)
 {
-			//ft_putendlcolor("mthread()", MAGENTA);
+			// ft_putendlcolor("mthread()", MAGENTA);
 	pthread_t	th[NBTH];
 	int			i;
 	int			size;
@@ -46,15 +46,13 @@ void	mthread(t_base *base)
 void	*start_draw(void *tmp)
 {
 			//ft_putendlcolor("Start_fract()", MAGENTA);
-	int		x;
 	t_fract *fr;
 
 	fr = (t_fract*)tmp;
-	x = fr->x;
-	fr->mx = (fr->j == 1) ? -0.5 : fr->mx;
+	fr->y = 0;
 	while (fr->y < fr->twiny)
 	{
-		fr->x = x;
+		fr->x = 0;
 		while (fr->x < fr->winx)
 		{
 			fr->nr = 0;
@@ -109,9 +107,8 @@ void	mandelbrot(t_fract *fr)
 		fr->ai = fr->ni;
 		fr->nr = fr->ar * fr->ar - fr->ai * fr->ai + fr->cr;
 		fr->ni = 2 * fr->ar * fr->ai + fr->ci;
-		if((fr->nr * fr->nr + fr->ni * fr->ni) > 4 )
+		if((fr->nr * fr->nr + fr->ni * fr->ni) > 4)
 			break;
 		fr->i++;
 	}
 }
-	

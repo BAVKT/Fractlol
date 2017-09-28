@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 13:58:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/20 20:06:48 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/28 16:03:04 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,22 @@
 // ** Sierpinski fractal
 // ** We just draw lines between xy1/xy2 | xy2/xy3 | xy1/xy3
 // */
+
+
+			// IM = fabsl((X - POS_X - (((HEIGHT + (W * 1000)) / 2)) *
+			// 			(4.0 / WIDTH)));
+			// RE = fabsl((Y - POS_Y - (((HEIGHT + (H * 1000)) / 2)) *
+			// 			(4.0 / WIDTH)));
+			// while (((int)IM % 3 != 1 || ((int)RE % 3) != 1) && ++ITER < MAXI)
+			// {
+			// 	IM /= 3;
+			// 	RE /= 3;
+			// }
+			// if (ITER != MAXI)
+			// 	ITER = 1;
+
+
+
 
 // void sierpinski(t_base *base,)
 // {

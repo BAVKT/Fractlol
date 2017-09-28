@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:32:42 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/27 20:03:13 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/28 17:33:32 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ t_fract	init_fract(t_base *base)
 	fr.ai = 0;
 	fr.mx = 0;
 	fr.my = 0;
-	fr.zoom = 1;
-	fr.cr = - 0.7;
+	fr.sx = 0;
+	fr.sy = 0;
+	fr.zoom = 1.2;
+	fr.cr = 0.7;
 	fr.maxi = 10;
 	fr.ci = 0.27015;
 	fr.color = 0xffffff;
@@ -71,6 +73,8 @@ t_fract	init_fracthr(t_base *base)
 	fr.ai = base->frfr.ai;
 	fr.mx = base->frfr.mx;
 	fr.my = base->frfr.my;
+	fr.sx = base->frfr.sx;
+	fr.sy = base->frfr.sy;
 	fr.zoom = base->frfr.zoom;
 	fr.cr = - base->frfr.cr;
 	fr.maxi = base->frfr.maxi;

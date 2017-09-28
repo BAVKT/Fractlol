@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:38:15 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/27 21:30:59 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/28 17:19:05 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,9 @@ void	px_img(t_fract *fr)
 void	get_color(t_fract *fr)
 {
 	unsigned char	c;
-	int				size;
 
-	size = fr->maxi / 8;
-	if (fr->i == fr->maxi)
-		c = 0;
-	else
-		c = 255 * (fr->i * 8) / fr->maxi;
-
-	// if (fr->i == fr->maxi)
-	// 	c = 0;
-	// else if (fr->i > size * 7)
-	// 	c = 
-	// else if (fr->i > size * 6)
-	// else if (fr->i > size * 5)
-	// else if (fr->i > size * 4)
-	// else if (fr->i > size * 3)
-	// else if (fr->i > size * 2)
-	// else if (fr->i > size * 1)
-
-
-	fr->color = (c & 255);
+	c = fr->i == fr->maxi ? 0 : 255 * (fr->i * 8) / fr->maxi;
+ 	fr->color = (c & 255);
 }
 
 /*

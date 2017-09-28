@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/27 20:15:49 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/28 17:30:51 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct			s_fract
 	double				my;				//pour les deplacements y
 	int					x;
 	int					y;
+	int					sx;				//Position souris x
+	int					sy;
 	int					maxx;
 	int					maxy;
 	int					i;
@@ -114,6 +116,8 @@ void					refresh(t_base *base);
 int						event(int keycode, void *param);
 void					ev_move(int k, t_base *base);
 void					ev_else(int k, t_base * base);
+int						ev_mouse(int k, int x, int y, void *param);
+int						evmv_mouse(int x, int y, t_base *base);
 
 /*
 ** The init functions			|  init.c
@@ -129,7 +133,7 @@ t_fract					init_fracthr(t_base *base);
 
 void					get_fractal(char *av, t_fract *fr);
 void					error(int e);
-void					clean(t_base *base);
+int						clean(t_base *base);
 void					mthread(t_base *base);
 
 
