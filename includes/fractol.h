@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/28 19:35:36 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/30 19:57:18 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include <fcntl.h>
 # include <pthread.h>
+# include <limits.h>
 # define NBTH 8
 
 typedef struct			s_mlx
@@ -40,6 +41,10 @@ typedef struct			s_fract
 	double				zoom;
 	double				mx;				//Pour les depalcements x
 	double				my;				//pour les deplacements y
+	unsigned char		r;
+	unsigned char		g;
+	unsigned char		b;
+	unsigned int		color;
 	int					x;
 	int					y;
 	int					sx;				//Position souris x
@@ -48,10 +53,6 @@ typedef struct			s_fract
 	int					maxy;
 	int					i;
 	int					j;
-	unsigned char		r;
-	unsigned char		g;
-	unsigned char		b;
-	unsigned int		color;
 	int					maxi;			//Le nombre maximum d'iterations
 	int					winx;
 	int					winy;
@@ -86,6 +87,8 @@ typedef struct			s_base
 	int					winy;
 	int					win_size;
 	int					mouse;
+	int					ui1;
+	int					ui2;
 }						t_base;
 
 typedef void        (*t_ft) (t_fract*);
@@ -103,6 +106,7 @@ void					fractol(t_base *base);
 void					*start_draw(void *base);
 void					julia(t_fract *fr);
 void					mandelbrot(t_fract *fr);
+void					random1(t_fract *fr);
 
 /*
 ** UI, colors and display		| display.c
@@ -111,6 +115,9 @@ void					mandelbrot(t_fract *fr);
 void					px_img(t_fract *fr);
 void					get_color(t_fract *fr);
 void					ui(t_base *base);
+void					ui1(t_base *base);
+void					ui2(t_base *base);
+
 
 /*
 ** All the events fucntions		|  event.c

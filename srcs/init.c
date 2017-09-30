@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:32:42 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/28 20:36:41 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/09/30 20:00:40 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ void	init_base(t_base *base, char *av)
 {
 			ft_putendlcolor("init_base()", MAGENTA);
 	base->av = ft_strdup(av);
-	base->winx = 1500;
-	base->winy = 1000;
+	base->winx = 800;
+	base->winy = 800;
 	base->mx.bpp = 8;
 	base->mx.endian = 0;
 	base->win_size = base->winx * base->winy;
-	base->mouse = 1;
+	base->mouse = 0;
+	base->ui1 = 0;
+	base->ui2 = 0;
 	base->mx.sizeline = base->winy;
 	base->frfr = init_fract(base);
 	base->mx.mlx = mlx_init();
@@ -56,9 +58,9 @@ t_fract	init_fract(t_base *base)
 	fr.maxi = 10;
 	fr.ci = 0.27015;
 	fr.color = 0xffffff;
-	fr.r = 70;
-	fr.g = 70;
-	fr.b = 70;
+	fr.r = 230;
+	fr.g = 105;
+	fr.b = 250;
 	get_fractal(base->av, &fr);
 	return (fr);
 }

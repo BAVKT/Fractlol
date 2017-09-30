@@ -113,3 +113,25 @@ void	mandelbrot(t_fract *fr)
 		fr->i++;
 	}
 }
+
+void	random1(t_fract *fr)
+{
+			// ft_putendlcolor("Mandelrot()", MAGENTA);
+	fr->cr = 1.5 * (fr->x - fr->winx / 2) / (0.5 * fr->zoom * fr->winx) + fr->mx;
+	fr->ci = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
+	while(fr->i < fr->maxi)
+	{
+		fr->ar = fr->nr - fr->sx;
+		fr->ai = fr->ni	- fr->sy;
+		fr->nr = fr->ar * fr->ar + fr->ai * fr->ai - fr->cr;
+		fr->ni = 2 * fr->ar * fr->ai - fr->ci;
+		if((fr->nr * fr->nr - fr->ni * fr->ni) > 4)
+			break;
+		fr->i++;
+	}
+}
+
+
+
+
+
