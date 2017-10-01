@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:38:15 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/30 20:04:31 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/01 18:27:54 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	get_color(t_fract *fr)
 }
 
 /*
-** Start the ui and display the menus
+** Start the ui, display the menus and the fractal name
 */
 
 void	ui(t_base *base)
@@ -44,6 +44,9 @@ void	ui(t_base *base)
 	int g;
 
 	g = 0x00ff00;
+	get_name(base);
+	mlx_string_put(base->mx.mlx, base->mx.win, (base->winx - 
+		(ft_strlen(base->name) * 10) - 10), 5, 0xffffff, base->name);
 	mlx_string_put(base->mx.mlx, base->mx.win, 10, 
 		base->winy - 25, g, "Shorcut = # ");
 	mlx_string_put(base->mx.mlx, base->mx.win, 10,
@@ -59,19 +62,23 @@ void	ui(t_base *base)
 
 void	ui1(t_base *base)
 {
-			//ft_putendlcolor("ui()", MAGENTA);
 	int		w;
 
 	w = 0xffffff;
 	mlx_string_put(base->mx.mlx, base->mx.win, 20, 20, 0x00ff00, "     - KEYS -");
 	mlx_string_put(base->mx.mlx, base->mx.win, 20, 50, w, "Quit     =  Esc");
-	mlx_string_put(base->mx.mlx, base->mx.win, 20, 70, w, "Reset    =  ~");
-	mlx_string_put(base->mx.mlx, base->mx.win, 20, 90, w, "Zoom     =  +  &  -");
-	mlx_string_put(base->mx.mlx, base->mx.win, 20, 110, w, "Move     =  Scroll Wheel");
+	mlx_string_put(base->mx.mlx, base->mx.win, 20, 70, w, "Reset    =  R");
+	mlx_string_put(base->mx.mlx, base->mx.win, 20, 90, w, "Fractal  =  <  &  >");
+	mlx_string_put(base->mx.mlx, base->mx.win, 20, 110, w, "Zoom     =  +  &  -");
+	mlx_string_put(base->mx.mlx, base->mx.win, 20, 130, w, "Move     =  Scroll Wheel");
 	if (base->mouse)
-		mlx_string_put(base->mx.mlx, base->mx.win, 20, 130, w, "SpaceBar =  Mouse ON");
+		mlx_string_put(base->mx.mlx, base->mx.win, 20, 150, w, "SpaceBar =  Mouse     [ON]");
 	else
-		mlx_string_put(base->mx.mlx, base->mx.win, 20, 130, w, "SpaceBar =  Mouse OFF");
+		mlx_string_put(base->mx.mlx, base->mx.win, 20, 150, w, "SpaceBar =  Mouse     [OFF]");
+	if (base->autoiter)
+		mlx_string_put(base->mx.mlx, base->mx.win, 20, 170, w, "Enter    =  Auto-iter [ON]");
+	else
+		mlx_string_put(base->mx.mlx, base->mx.win, 20, 170, w, "Enter    =  Auto-iter [OFF]");
 }
 
 /*
@@ -89,9 +96,9 @@ void	ui2(t_base *base)
 	wx = base->winx - 180;
 	mlx_string_put(base->mx.mlx, base->mx.win, wx, base->winy - 30,
 		w, ft_strjoin("Iterations = ", ft_itoa(base->fr[0].maxi)));
-	if (base->fr[0].zoom * 10 > 999999999)
+	if (base->fr[0].zoom * 10 > 999999999999)
 		mlx_string_put(base->mx.mlx, base->mx.win, wx, base->winy - 50,
-		0xff0000, ft_strjoin("   Zoom    = ", "Over 999B"));
+		0xff0000, ft_strjoin("   Zoom    = ", "Over 999M"));
 	else
 		mlx_string_put(base->mx.mlx, base->mx.win, wx, base->winy - 50,
 		w, ft_strjoin("   Zoom    = ", str));
@@ -103,5 +110,4 @@ void	ui2(t_base *base)
 		w, ft_strjoin("    B      = ", ft_itoa(base->frfr.b)));
 	mlx_string_put(base->mx.mlx, base->mx.win, wx, base->winy - 140,
 		0x00ff00, "     - STATS -");
-
 }

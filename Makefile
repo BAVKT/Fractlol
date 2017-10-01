@@ -6,14 +6,14 @@
 #    By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/27 17:07:31 by vmercadi          #+#    #+#              #
-#    Updated: 2017/09/27 19:26:30 by vmercadi         ###   ########.fr        #
+#    Updated: 2017/10/01 17:04:21 by vmercadi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
 SRC = srcs/fractol.c srcs/init.c srcs/display.c srcs/fractals.c srcs/event.c \
-      srcs/utils.c srcs/sierpinski.c
+      srcs/utils.c srcs/fractals2.c
 
 MLX_S = autre/minilibx_macos_sierra/
 

@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 16:38:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/30 19:31:46 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/01 18:28:46 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 void	refresh(t_base *base)
 {
-			 // ft_putendlcolor("refresh()", MAGENTA);
 	mthread(base);
 	mlx_put_image_to_window(base->mx.mlx, base->mx.win, base->mx.img, 0, 0);
 	ui(base);
@@ -30,7 +29,6 @@ void	refresh(t_base *base)
 
 void	fractol(t_base *base)
 {	
-			ft_putendlcolor("fractol()", MAGENTA);
 	refresh(base);
 	mlx_hook(base->mx.win, 2, 0, event, base);
 	mlx_hook(base->mx.win, 6, 0, evmv_mouse, base);

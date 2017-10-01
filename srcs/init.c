@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:32:42 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/30 20:00:40 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/01 18:28:15 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 void	init_base(t_base *base, char *av)
 {
-			ft_putendlcolor("init_base()", MAGENTA);
 	base->av = ft_strdup(av);
-	base->winx = 800;
-	base->winy = 800;
+	base->winx = 1000;
+	base->winy = 1000;
 	base->mx.bpp = 8;
 	base->mx.endian = 0;
 	base->win_size = base->winx * base->winy;
@@ -26,6 +25,8 @@ void	init_base(t_base *base, char *av)
 	base->ui2 = 0;
 	base->mx.sizeline = base->winy;
 	base->frfr = init_fract(base);
+	base->frac = base->frfr.j;
+	base->autoiter = 0;
 	base->mx.mlx = mlx_init();
 	base->mx.win = mlx_new_window(base->mx.mlx, base->winx, base->winy, "Fractlol");
 	base->mx.img = mlx_new_image(base->mx.mlx, base->winx, base->winy);
@@ -38,7 +39,6 @@ void	init_base(t_base *base, char *av)
 
 t_fract	init_fract(t_base *base)
 {
-			//ft_putendlcolor("init_fract()", MAGENTA);
 	t_fract	fr;
 
 	fr.x = 0;
@@ -67,7 +67,6 @@ t_fract	init_fract(t_base *base)
 
 t_fract	init_fracthr(t_base *base)
 {
-			//ft_putendlcolor("init_fracthr()", MAGENTA);
 	t_fract	fr;
 
 	fr.x = base->frfr.x;
@@ -92,6 +91,6 @@ t_fract	init_fracthr(t_base *base)
 	fr.winx = base->winx;
 	fr.winy = base->winy;
 	fr.data = base->mx.data;
-	fr.j = base->frfr.j;
+	fr.j = base->frac;
 	return (fr);
 }

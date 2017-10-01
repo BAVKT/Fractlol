@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/30 19:57:18 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/01 18:23:04 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <pthread.h>
 # include <limits.h>
 # define NBTH 8
+# define FRAC base->frac
 
 typedef struct			s_mlx
 {
@@ -82,13 +83,16 @@ typedef struct			s_base
 	struct	s_mlx		mx;
 	struct	s_fract		fr[NBTH];
 	struct	s_fract		frfr;
+	char				*name;
 	char				*av;
 	int					winx;
 	int					winy;
 	int					win_size;
 	int					mouse;
+	int					autoiter;
 	int					ui1;
 	int					ui2;
+	int					frac;
 }						t_base;
 
 typedef void        (*t_ft) (t_fract*);
@@ -106,7 +110,16 @@ void					fractol(t_base *base);
 void					*start_draw(void *base);
 void					julia(t_fract *fr);
 void					mandelbrot(t_fract *fr);
-void					random1(t_fract *fr);
+
+/*
+** Other fractals algorithms	|  fractals2.c
+*/
+
+void					reversebrot(t_fract *fr);
+void					reversejulia(t_fract *fr);
+void					cell(t_fract *fr);
+void					zbli(t_fract *fr);
+void					plume(t_fract *fr);
 
 /*
 ** UI, colors and display		| display.c
@@ -143,25 +156,20 @@ t_fract					init_fracthr(t_base *base);
 */
 
 void					get_fractal(char *av, t_fract *fr);
+void					get_name(t_base *base);
 void					error(int e);
 int						clean(t_base *base);
 void					mthread(t_base *base);
 
-
-/*
-** Sierpinski Fractals			|  sierpinski.c 
-*/
-
-void					sierpinski(t_base *base, t_fract *fr);
-void					triangles(t_fract *fr, int i);
-void					start_line(t_base *base, t_fract *fr);
-void					line1(t_base *base, int xx, int yy);
-void					line2(t_base *base, int xx, int yy);
-
 static const t_ft tab_fr[] =
 {
     &julia,
-    &mandelbrot
+    &mandelbrot,
+    &reversebrot,
+    &reversejulia,
+    &cell,
+    &zbli,
+    &plume
 };
 
 #endif

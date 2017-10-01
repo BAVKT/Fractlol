@@ -13,39 +13,11 @@
 #include "fractol.h"
 
 /*
-** Multi-threading
-*/
-
-void	mthread(t_base *base)
-{
-			// ft_putendlcolor("mthread()", MAGENTA);
-	pthread_t	th[NBTH];
-	int			i;
-	int			size;
-
-	i = 0;
-	size = base->winy / NBTH;
-	while (i < NBTH)
-	{
-		base->fr[i] = init_fracthr(base);
-		base->fr[i].y = i * size;
-		base->fr[i].twiny = (i + 1) * size;
-		if (pthread_create(&th[i], NULL, start_draw, (void *)&base->fr[i]))
-			error(4);
-		i++;
-	}
-	i = 0;
-	while (i < NBTH)
-		pthread_join(th[i++], NULL);
-}
-
-/*
-** Init and start the fractal
+** Init and start the fractal needed
 */
 
 void	*start_draw(void *tmp)
 {
-			//ft_putendlcolor("Start_fract()", MAGENTA);
 	t_fract *fr;
 	int		x;
 
@@ -77,7 +49,6 @@ void	*start_draw(void *tmp)
 
 void	julia(t_fract *fr)
 {
-			//ft_putendlcolor("Julia()", MAGENTA);
 	fr->nr = 1.5 * (fr->x - fr->winx / 2) / (0.5 * fr->zoom * fr->winx) + fr->mx;
 	fr->ni = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
 	fr->i = 0;
@@ -99,7 +70,6 @@ void	julia(t_fract *fr)
 
 void	mandelbrot(t_fract *fr)
 {
-			// ft_putendlcolor("Mandelrot()", MAGENTA);
 	fr->cr = 1.5 * (fr->x - fr->winx / 2) / (0.5 * fr->zoom * fr->winx) + fr->mx;
 	fr->ci = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
 	while(fr->i < fr->maxi)
@@ -113,25 +83,3 @@ void	mandelbrot(t_fract *fr)
 		fr->i++;
 	}
 }
-
-void	random1(t_fract *fr)
-{
-			// ft_putendlcolor("Mandelrot()", MAGENTA);
-	fr->cr = 1.5 * (fr->x - fr->winx / 2) / (0.5 * fr->zoom * fr->winx) + fr->mx;
-	fr->ci = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
-	while(fr->i < fr->maxi)
-	{
-		fr->ar = fr->nr - fr->sx;
-		fr->ai = fr->ni	- fr->sy;
-		fr->nr = fr->ar * fr->ar + fr->ai * fr->ai - fr->cr;
-		fr->ni = 2 * fr->ar * fr->ai - fr->ci;
-		if((fr->nr * fr->nr - fr->ni * fr->ni) > 4)
-			break;
-		fr->i++;
-	}
-}
-
-
-
-
-
