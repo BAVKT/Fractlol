@@ -1,12 +1,12 @@
 /* ************************************************************************** */
-/*						                                                      */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   fractals.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/19 16:39:23 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/09/20 13:22:37 by vmercadi         ###   ########.fr       */
+/*   Created: 2017/10/01 18:29:39 by vmercadi          #+#    #+#             */
+/*   Updated: 2017/10/01 18:51:37 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,18 @@ void	*start_draw(void *tmp)
 
 void	julia(t_fract *fr)
 {
-	fr->nr = 1.5 * (fr->x - fr->winx / 2) / (0.5 * fr->zoom * fr->winx) + fr->mx;
+	fr->nr = 1.5 * (fr->x - fr->winx / 2) /
+		(0.5 * fr->zoom * fr->winx) + fr->mx;
 	fr->ni = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
 	fr->i = 0;
 	while (fr->i < fr->maxi)
 	{
 		fr->ar = fr->nr + fr->sx;
-		fr->ai = fr->ni	+ fr->sy;
+		fr->ai = fr->ni + fr->sy;
 		fr->nr = fr->ar * fr->ar - fr->ai * fr->ai + fr->cr;
 		fr->ni = 2 * fr->ar * fr->ai + fr->ci;
-		if((fr->nr * fr->nr + fr->ni * fr->ni) > 4)
-			break;
+		if ((fr->nr * fr->nr + fr->ni * fr->ni) > 4)
+			break ;
 		fr->i++;
 	}
 }
@@ -70,16 +71,17 @@ void	julia(t_fract *fr)
 
 void	mandelbrot(t_fract *fr)
 {
-	fr->cr = 1.5 * (fr->x - fr->winx / 2) / (0.5 * fr->zoom * fr->winx) + fr->mx;
+	fr->cr = 1.5 * (fr->x - fr->winx / 2) /
+		(0.5 * fr->zoom * fr->winx) + fr->mx;
 	fr->ci = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
-	while(fr->i < fr->maxi)
+	while (fr->i < fr->maxi)
 	{
 		fr->ar = fr->nr + fr->sx;
-		fr->ai = fr->ni	+ fr->sy;
+		fr->ai = fr->ni + fr->sy;
 		fr->nr = fr->ar * fr->ar - fr->ai * fr->ai + fr->cr;
 		fr->ni = 2 * fr->ar * fr->ai + fr->ci;
-		if((fr->nr * fr->nr + fr->ni * fr->ni) > 4)
-			break;
+		if ((fr->nr * fr->nr + fr->ni * fr->ni) > 4)
+			break ;
 		fr->i++;
 	}
 }

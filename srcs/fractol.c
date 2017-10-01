@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 16:38:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/01 18:28:46 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/01 18:51:37 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void	refresh(t_base *base)
 */
 
 void	fractol(t_base *base)
-{	
+{
 	refresh(base);
 	mlx_hook(base->mx.win, 2, 0, event, base);
 	mlx_hook(base->mx.win, 6, 0, evmv_mouse, base);
 	mlx_hook(base->mx.win, 17, 0, clean, base);
-	mlx_mouse_hook (base->mx.win, ev_mouse, base);
+	mlx_mouse_hook(base->mx.win, ev_mouse, base);
 	mlx_loop(base->mx.mlx);
 }
 

@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:42:28 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/01 18:28:05 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/01 18:51:38 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int		evmv_mouse(int x, int y, t_base *base)
 	{
 		base->frfr.sx = (((double)x - base->winx / 2) / 150);
 		base->frfr.sy = (((double)y - base->winy / 2) / 150);
-		// base->frfr.nr = -0.5 + (double)x / base->winx;
-        // base->frfr.ni = -0.5 + (double)y / base->winy;
 	}
 	refresh(base);
 	return (0);
@@ -36,7 +34,7 @@ int		evmv_mouse(int x, int y, t_base *base)
 int		ev_mouse(int k, int x, int y, void *param)
 {
 	t_base *base;
-		
+
 	base = (t_base *)param;
 	if (k == 1)
 		base->frfr.color = (x + y) / 255;
@@ -51,7 +49,8 @@ int		ev_mouse(int k, int x, int y, void *param)
 		if (base->autoiter && base->frfr.maxi > 2)
 			base->frfr.maxi--;
 		base->frfr.zoom -= 0.2 * base->frfr.zoom;
-	}	refresh(base);
+	}
+	refresh(base);
 	return (0);
 }
 
@@ -89,7 +88,7 @@ void	ev_move(int k, t_base *base)
 }
 
 /*
-** Other events : Quit, choose fractal, change color, reinit 
+** Other events : Quit, choose fractal, change color, reinit
 */
 
 void	ev_else(int k, t_base *base)
@@ -97,7 +96,7 @@ void	ev_else(int k, t_base *base)
 	if (k == 53)
 		clean(base);
 	else if (k == 15)
-	 	base->frfr = init_fract(base);
+		base->frfr = init_fract(base);
 	else if (k == 86)
 		base->frfr.r += 5;
 	else if (k == 87)
@@ -126,7 +125,7 @@ void	ev_else(int k, t_base *base)
 int		event(int k, void *param)
 {
 	t_base *base;
-		
+
 	base = (t_base *)param;
 	if (k == 36 || k == 76)
 		base->autoiter = (base->autoiter == 0) ? 1 : 0;

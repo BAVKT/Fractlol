@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:48:54 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/01 18:28:24 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/01 18:51:39 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	error(int e)
 {
 	if (e == 0)
 	{
-		ft_putendl_fd("Usage : ./fractol FractalName", 2);		
+		ft_putendl_fd("Usage : ./fractol FractalName", 2);
 		exit(1);
 	}
 	ft_putstr_fd("Error : ", 2);
