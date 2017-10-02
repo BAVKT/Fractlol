@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:48:54 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/02 13:12:20 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/02 19:35:25 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	mthread(t_base *base)
 
 void	error(int e)
 {
-	if (e == 0 || e == 1 )
+	if (e == 0 || e == 1)
 	{
 		ft_putendl_fd("Usage : ./fractol FractalName", 2);
 		exit(1);
@@ -58,6 +58,16 @@ void	error(int e)
 		ft_putendl_fd("Multithreading failed.", 2);
 	exit(1);
 }
+
+/*
+** Somes colors set
+*/
+
+// void	color_set(int k, t_base *base)
+// {
+// 	if (k == 33)
+// 		color_tab[]
+// }
 
 /*
 ** Free all the tabs needed

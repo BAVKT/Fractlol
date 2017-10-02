@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/02 13:08:28 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/02 19:00:48 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # define NBTH 8
 # define W 0xffffff
 # define G 0x00ff00
-# define WINX 600
-# define WINY 600
+# define WINX 800
+# define WINY 800
 
 typedef struct			s_mlx
 {
@@ -42,8 +42,8 @@ typedef struct			s_fract
 	int					j;
 	int					sx;
 	int					sy;
-	int					maxx;
-	int					maxy;
+	int					reel;
+	int					ima;
 	int					maxi;
 	int					winx;
 	int					winy;
@@ -74,6 +74,7 @@ typedef struct			s_base
 	struct s_fract		fr[NBTH];
 	char				*name;
 	char				*av;
+	int					j;
 	int					ui1;
 	int					ui2;
 	int					ui3;
@@ -137,6 +138,8 @@ int						evmv_mouse(int x, int y, t_base *base);
 ** The init functions			|  init.c
 */
 
+void					get_name(t_base *base);
+void					get_fractal(char *av, t_fract *fr);
 void					init_base(t_base *base, char *av);
 t_fract					init_fract(t_base *base);
 t_fract					init_fracthr(t_base *base);
@@ -145,8 +148,6 @@ t_fract					init_fracthr(t_base *base);
 ** Various functions			|  utils.c
 */
 
-void					get_fractal(char *av, t_fract *fr);
-void					get_name(t_base *base);
 void					error(int e);
 int						clean(t_base *base);
 void					mthread(t_base *base);

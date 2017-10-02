@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:38:15 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/01 22:29:49 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/02 16:26:57 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	ui2(t_base *base)
 		W, ft_strjoin("Iterations = ", ft_itoa(base->fr[0].maxi)));
 	if (base->fr[0].zoom * 10 > 999999999999)
 		mlx_string_put(base->mx.mlx, base->mx.win, wx, base->winy - 50,
-		0xff0000, ft_strjoin("   Zoom    = ", "Over 999M"));
+		0xff0000, ft_strjoin("   Zoom    = ", "Over"));
 	else
 		mlx_string_put(base->mx.mlx, base->mx.win, wx, base->winy - 50,
 		W, ft_strjoin("   Zoom    = ", str));

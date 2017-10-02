@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:32:42 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/02 13:14:39 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/02 19:47:48 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,19 @@ void	get_fractal(char *av, t_fract *fr)
 
 void	get_name(t_base *base)
 {
-	if (base->frfr.j == 0)
+	if (base->j == 0)
 		base->name = ft_strdup("Julia");
-	else if (base->frfr.j == 1)
+	else if (base->j == 1)
 		base->name = ft_strdup("Mandelbrot");
-	else if (base->frfr.j == 2)
+	else if (base->j == 2)
 		base->name = ft_strdup("Reversebrot");
-	else if (base->frfr.j == 3)
+	else if (base->j == 3)
 		base->name = ft_strdup("Reversejulia");
-	else if (base->frfr.j == 4)
+	else if (base->j == 4)
 		base->name = ft_strdup("Cell");
-	else if (base->frfr.j == 5)
+	else if (base->j == 5)
 		base->name = ft_strdup("Zbli");
-	else if (base->frfr.j == 6)
+	else if (base->j == 6)
 		base->name = ft_strdup("Plumes");
 }
 
@@ -77,6 +77,7 @@ void	init_base(t_base *base, char *av)
 	base->ui1 = 0;
 	base->ui2 = 0;
 	base->ui3 = 0;
+	base->j = 0;
 	base->mx.sizeline = base->winy;
 	base->frfr = init_fract(base);
 	base->hide = 0;
@@ -99,19 +100,19 @@ t_fract	init_fract(t_base *base)
 	fr.x = 0;
 	fr.y = 0;
 	fr.i = 0;
-	fr.j = 0;
-	fr.nr = 0;
-	fr.ni = 0;
-	fr.ar = 0;
-	fr.ai = 0;
-	fr.mx = 0;
-	fr.my = 0;
+	fr.j = base->j;
+	fr.nr = 0.0;
+	fr.ni = 0.0;
+	fr.ar = 0.0;
+	fr.ai = 0.0;
+	fr.mx = 0.0;
+	fr.my = 0.0;
 	fr.sx = 0;
 	fr.sy = 0;
 	fr.r = 230;
 	fr.g = 105;
 	fr.b = 250;
-	fr.zoom = 1;
+	fr.zoom = 1.0;
 	fr.yolo = 0;
 	fr.cr = 0.7;
 	fr.maxi = 10;
@@ -130,17 +131,13 @@ t_fract	init_fracthr(t_base *base)
 {
 	t_fract	fr;
 
-	fr.j = base->frfr.j;
+	fr.j = base->j;
 	fr.i = base->frfr.i;
 	fr.x = base->frfr.x;
 	fr.y = base->frfr.y;
 	fr.r = base->frfr.r;
 	fr.g = base->frfr.g;
 	fr.b = base->frfr.b;
-	fr.nr = base->frfr.nr;
-	fr.ni = base->frfr.ni;
-	fr.ar = base->frfr.ar;
-	fr.ai = base->frfr.ai;
 	fr.mx = base->frfr.mx;
 	fr.my = base->frfr.my;
 	fr.sx = base->frfr.sx;
