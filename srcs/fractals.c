@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 18:29:39 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/01 18:51:37 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/02 13:03:37 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	*start_draw(void *tmp)
 			fr->ar = 0;
 			fr->ai = 0;
 			fr->i = 0;
-			tab_fr[fr->j](fr);
+			g_tab_fr[fr->j](fr);
 			get_color(fr);
 			px_img(fr);
 			fr->x++;

@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/01 18:51:35 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/02 13:08:28 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,66 +18,71 @@
 # include <pthread.h>
 # include <limits.h>
 # define NBTH 8
-# define FRAC base->frac
 # define W 0xffffff
 # define G 0x00ff00
+# define WINX 600
+# define WINY 600
 
 typedef struct			s_mlx
 {
 	void				*mlx;
 	void				*win;
 	void				*img;
-	int					*data;
 	int					bpp;
-	int					sizeline;
+	int					*data;
 	int					endian;
+	int					sizeline;
 }						t_mlx;
 
 typedef struct			s_fract
 {
+	int					x;
+	int					y;
+	int					i;
+	int					j;
+	int					sx;
+	int					sy;
+	int					maxx;
+	int					maxy;
+	int					maxi;
+	int					winx;
+	int					winy;
+	int					posx;
+	int					posy;
+	int					yolo;
+	int					twiny;
+	int					*data;
 	double				cr;
 	double				ci;
 	double				nr;
 	double				ni;
 	double				ar;
 	double				ai;
-	double				zoom;
 	double				mx;
 	double				my;
+	double				zoom;
+	unsigned int		color;
 	unsigned char		r;
 	unsigned char		g;
 	unsigned char		b;
-	unsigned int		color;
-	int					x;
-	int					y;
-	int					sx;
-	int					sy;
-	int					maxx;
-	int					maxy;
-	int					i;
-	int					j;
-	int					maxi;
-	int					winx;
-	int					winy;
-	int					twiny;
-	int					*data;
 }						t_fract;
 
 typedef struct			s_base
 {
 	struct s_mlx		mx;
-	struct s_fract		fr[NBTH];
 	struct s_fract		frfr;
+	struct s_fract		fr[NBTH];
 	char				*name;
 	char				*av;
-	int					winx;
-	int					winy;
-	int					win_size;
-	int					mouse;
-	int					autoiter;
 	int					ui1;
 	int					ui2;
-	int					frac;
+	int					ui3;
+	int					winx;
+	int					winy;
+	int					mouse;
+	int					hide;
+	int					autoiter;
+	int					win_size;
 }						t_base;
 
 typedef void			(*t_ft) (t_fract*);
@@ -115,6 +120,7 @@ void					get_color(t_fract *fr);
 void					ui(t_base *base);
 void					ui1(t_base *base);
 void					ui2(t_base *base);
+void					ui3(t_base *base);
 
 /*
 ** All the events fucntions		|  event.c
@@ -145,7 +151,7 @@ void					error(int e);
 int						clean(t_base *base);
 void					mthread(t_base *base);
 
-static const t_ft tab_fr[] =
+static const t_ft g_tab_fr[] =
 {
 	&julia,
 	&mandelbrot,

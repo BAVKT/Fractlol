@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:50:47 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/01 18:51:37 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/02 13:15:55 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	cell(t_fract *fr)
 
 void	zbli(t_fract *fr)
 {
-	fr->nr = 1 * (fr->x - fr->winx / 2) /
+	fr->nr = 1.5 * (fr->x - fr->winx / 2) /
 		(0.5 * fr->zoom * fr->winx) + fr->mx;
 	fr->ni = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
 	fr->i = 0;

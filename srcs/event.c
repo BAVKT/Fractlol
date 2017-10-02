@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:42:28 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/01 18:51:38 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/02 13:22:58 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int		evmv_mouse(int x, int y, t_base *base)
 		base->frfr.sx = (((double)x - base->winx / 2) / 150);
 		base->frfr.sy = (((double)y - base->winy / 2) / 150);
 	}
+	base->frfr.posx = x;
+	base->frfr.posy = y;
 	refresh(base);
 	return (0);
 }
@@ -37,8 +39,12 @@ int		ev_mouse(int k, int x, int y, void *param)
 
 	base = (t_base *)param;
 	if (k == 1)
-		base->frfr.color = (x + y) / 255;
-	else if (k == 4)
+	{
+		base->frfr.r = (x + y) * 255;
+		base->frfr.g = (x + y) * 255;
+		base->frfr.b = (x + y) * 255;
+	}
+	else if (k == 4 && base->frfr.zoom < INT_MAX)
 	{
 		if (base->autoiter)
 			base->frfr.maxi++;
@@ -60,30 +66,30 @@ int		ev_mouse(int k, int x, int y, void *param)
 
 void	ev_move(int k, t_base *base)
 {
-	if (k == 69)
+	if (k == 69 && base->frfr.zoom < 999999999999)
 	{
 		if (base->autoiter)
 			base->frfr.maxi++;
-		base->frfr.zoom += 0.2 * base->frfr.zoom;
+		base->frfr.zoom += 0.33 * base->frfr.zoom;
 	}
-	else if (k == 78 && base->frfr.zoom > 0.2)
+	else if (k == 78 && base->frfr.zoom > 0.33)
 	{
 		if (base->autoiter && base->frfr.maxi > 2)
 			base->frfr.maxi--;
-		base->frfr.zoom -= 0.2 * base->frfr.zoom;
+		base->frfr.zoom -= 0.33 * base->frfr.zoom;
 	}
 	else if (k == 67 && base->frfr.maxi < 200)
 		base->frfr.maxi++;
 	else if (k == 75 && base->frfr.maxi > 2)
 		base->frfr.maxi--;
 	else if (k == 126)
-		base->frfr.my -= 0.2 / base->frfr.zoom;
+		base->frfr.my -= 0.33 / base->frfr.zoom;
 	else if (k == 125)
-		base->frfr.my += 0.2 / base->frfr.zoom;
+		base->frfr.my += 0.33 / base->frfr.zoom;
 	else if (k == 124)
-		base->frfr.mx += 0.2 / base->frfr.zoom;
+		base->frfr.mx += 0.33 / base->frfr.zoom;
 	else if (k == 123)
-		base->frfr.mx -= 0.2 / base->frfr.zoom;
+		base->frfr.mx -= 0.33 / base->frfr.zoom;
 	refresh(base);
 }
 
@@ -111,10 +117,10 @@ void	ev_else(int k, t_base *base)
 		base->frfr.b -= 5;
 	else if (k == 49)
 		base->mouse = (base->mouse == 1) ? 0 : 1;
-	if (k == 43 && base->frac > 0)
-		base->frac--;
-	if (k == 47 && base->frac < 6)
-		base->frac++;
+	if (k == 43 && base->frfr.j > 0)
+		base->frfr.j--;
+	if (k == 47 && base->frfr.j < 6)
+		base->frfr.j++;
 	refresh(base);
 }
 
@@ -127,7 +133,11 @@ int		event(int k, void *param)
 	t_base *base;
 
 	base = (t_base *)param;
-	if (k == 36 || k == 76)
+	if (k == 16)
+		base->frfr.yolo = (base->frfr.yolo == 0) ? 1 : 0;
+	else if (k == 4)
+		base->hide = (base->hide == 0) ? 1 : 0;
+	else if (k == 36 || k == 76)
 		base->autoiter = (base->autoiter == 0) ? 1 : 0;
 	else if (k == 20)
 		base->ui1 = (base->ui1 == 0) ? 1 : 0;

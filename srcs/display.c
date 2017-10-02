@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:38:15 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/01 18:51:38 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/01 22:29:49 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	get_color(t_fract *fr)
 {
 	if (fr->i >= fr->maxi)
 		fr->color = 0;
+	else if (fr->yolo)
+		fr->color = rand();
 	else
 		fr->color = (fr->i * (fr->r * fr->g * fr->b)) % 16581375;
 }
@@ -41,13 +43,20 @@ void	get_color(t_fract *fr)
 
 void	ui(t_base *base)
 {
+	if (base->hide)
+	{
+		mlx_string_put(base->mx.mlx, base->mx.win, 5, 5, W, "[H]");		
+		return ;
+	}
 	get_name(base);
 	mlx_string_put(base->mx.mlx, base->mx.win, (base->winx -
 		(ft_strlen(base->name) * 10) - 10), 5, 0xffffff, base->name);
 	mlx_string_put(base->mx.mlx, base->mx.win, 10,
-		base->winy - 25, W, "Shorcut = # ");
+		base->winy - 25, W, "Hide all = H ");
 	mlx_string_put(base->mx.mlx, base->mx.win, 10,
-		base->winy - 45, W, "Stats   = $ ");
+		base->winy - 45, W, "Shorcut  = # ");
+	mlx_string_put(base->mx.mlx, base->mx.win, 10,
+		base->winy - 65, W, "Stats    = $ ");
 	if (base->ui1)
 		ui1(base);
 	if (base->ui2)
@@ -66,19 +75,23 @@ void	ui1(t_base *base)
 	w = base->mx.win;
 	mx = base->mx.mlx;
 	mlx_string_put(mx, w, 20, 20, G, "     - KEYS -");
-	mlx_string_put(mx, w, 20, 50, W, "Quit     =  Esc");
-	mlx_string_put(mx, w, 20, 70, W, "Reset    =  R");
-	mlx_string_put(mx, w, 20, 90, W, "Fractal  =  <  &  >");
-	mlx_string_put(mx, w, 20, 110, W, "Zoom     =  +  &  -");
-	mlx_string_put(mx, w, 20, 130, W, "Move     =  Scroll Wheel");
+	mlx_string_put(mx, w, 20, 50, W, "Quit      = Esc");
+	mlx_string_put(mx, w, 20, 70, W, "Reset     = R");
+	mlx_string_put(mx, w, 20, 90, W, "Move      = Arows");
+	mlx_string_put(mx, w, 20, 110, W, "Fractal   = <  &  >");
+	mlx_string_put(mx, w, 20, 130, W, "Zoom      = +/-  &  Scroll");
 	if (base->mouse)
-		mlx_string_put(mx, w, 20, 150, W, "SpaceBar =  Mouse     [ON]");
+		mlx_string_put(mx, w, 20, 150, W, "Woah      = SpaceBar [ON]");
 	else
-		mlx_string_put(mx, w, 20, 150, W, "SpaceBar =  Mouse     [OFF]");
+		mlx_string_put(mx, w, 20, 150, W, "Woah      = SpaceBar [OFF]");
+	if (base->frfr.yolo)
+		mlx_string_put(mx, w, 20, 170, W, "Yolo      = Y        [ON]");
+	else
+		mlx_string_put(mx, w, 20, 170, W, "Yolo      = Y        [OFF]");
 	if (base->autoiter)
-		mlx_string_put(mx, w, 20, 170, W, "Enter    =  Auto-iter [ON]");
+		mlx_string_put(mx, w, 20, 190, W, "Auto-iter = Enter    [ON]");
 	else
-		mlx_string_put(mx, w, 20, 170, W, "Enter    =  Auto-iter [OFF]");
+		mlx_string_put(mx, w, 20, 190, W, "Auto-iter = Enter    [OFF]");
 }
 
 /*
