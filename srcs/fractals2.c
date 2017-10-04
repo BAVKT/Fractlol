@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:50:47 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/02 16:26:58 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/04 18:31:52 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	reversejulia(t_fract *fr)
 		(0.5 * fr->zoom * fr->winx) + fr->mx;
 	fr->ni = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
 	fr->i = 0;
+	fr->cr = 0.285 + fr->sx;
+	fr->ci = 0.01 + fr->sy;
 	while (fr->i < fr->maxi)
 	{
 		fr->ar = fr->nr - fr->sx;
@@ -59,18 +61,20 @@ void	reversejulia(t_fract *fr)
 ** Julia with ni = -2 instead of 2
 */
 
-void	cell(t_fract *fr)
+void	spark(t_fract *fr)
 {
 	fr->nr = 1.5 * (fr->x - fr->winx / 2) /
 		(0.5 * fr->zoom * fr->winx) + fr->mx;
 	fr->ni = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
 	fr->i = 0;
+	fr->cr = 0.285 + fr->sx;
+	fr->ci = 0.2 + fr->sy;
 	while (fr->i < fr->maxi)
 	{
 		fr->ar = fr->nr + fr->sx;
 		fr->ai = fr->ni + fr->sy;
 		fr->nr = fr->ar * fr->ar - fr->ai * fr->ai + fr->cr;
-		fr->ni = -2 * fr->ar * fr->ai + fr->ci;
+		fr->ni = -8 * fr->ar * fr->ai + fr->ci;
 		if ((fr->nr * fr->nr + fr->ni * fr->ni) > 4)
 			break ;
 		fr->i++;
@@ -87,9 +91,11 @@ void	zbli(t_fract *fr)
 		(0.5 * fr->zoom * fr->winx) + fr->mx;
 	fr->ni = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
 	fr->i = 0;
+	fr->cr = 0.285 + fr->sx;
+	fr->ci = 0.01 + fr->sy;
 	while (fr->i < fr->maxi)
 	{
-		fr->ar = fr->nr - fr->sx;
+		fr->ar = fr->nr + fr->sx;
 		fr->ai = fr->ni + fr->sy;
 		fr->nr = fr->ar * fr->ar - fr->ai * fr->ai + fr->cr;
 		fr->ni = -2 * fr->ar * fr->ai - fr->ci;
@@ -109,10 +115,12 @@ void	plume(t_fract *fr)
 		(0.5 * fr->zoom * fr->winx) + fr->mx;
 	fr->ni = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
 	fr->i = 0;
+	fr->cr = 0.12 + fr->sx;
+	fr->ci = 0.01 + fr->sy;
 	while (fr->i < fr->maxi)
 	{
 		fr->ar = fr->nr + fr->sx;
-		fr->ai = fr->ni - fr->sy;
+		fr->ai = fr->ni + fr->sy;
 		fr->nr = 1.7 * fr->ar * fr->ar - fr->ai * fr->ai + fr->cr;
 		fr->ni = 2.8 * fr->ar * fr->ai - fr->ci;
 		if ((3 * fr->nr * fr->nr - fr->ni * fr->ni) > 4)

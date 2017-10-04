@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 18:29:39 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/02 19:52:39 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/04 18:31:52 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,12 @@ void	julia(t_fract *fr)
 		(0.5 * fr->zoom * fr->winx) + fr->mx;
 	fr->ni = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
 	fr->i = 0;
+	fr->cr = 0.285 + fr->sx;
+	fr->ci = 0.01 + fr->sy;
 	while (fr->i < fr->maxi)
 	{
-		fr->ar = fr->nr + fr->sx;
-		fr->ai = fr->ni + fr->sy;
+		fr->ar = fr->nr;
+		fr->ai = fr->ni;
 		fr->nr = fr->ar * fr->ar - fr->ai * fr->ai + fr->cr;
 		fr->ni = 2 * fr->ar * fr->ai + fr->ci;
 		if ((fr->nr * fr->nr + fr->ni * fr->ni) > 4)

@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:32:42 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/02 19:47:48 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/04 18:31:53 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	get_fractal(char *av, t_fract *fr)
 	else if (!ft_strcmp(av, "Plumes") || !ft_strcmp(av, "p") ||
 			 !ft_strcmp(av, "plumes") || !ft_strcmp(av, "P"))
 		fr->j = 3;
-	else if (!ft_strcmp(av, "Cell") || !ft_strcmp(av, "c") ||
-			 !ft_strcmp(av, "cell") || !ft_strcmp(av, "C"))
+	else if (!ft_strcmp(av, "Spark") || !ft_strcmp(av, "s") ||
+			 !ft_strcmp(av, "spark") || !ft_strcmp(av, "S"))
 		fr->j = 4;
 	else if (!ft_strcmp(av, "Zbli") || !ft_strcmp(av, "z") ||
 			 !ft_strcmp(av, "zbli") || !ft_strcmp(av, "Z"))
@@ -58,7 +58,7 @@ void	get_name(t_base *base)
 	else if (base->j == 3)
 		base->name = ft_strdup("Reversejulia");
 	else if (base->j == 4)
-		base->name = ft_strdup("Cell");
+		base->name = ft_strdup("Spark");
 	else if (base->j == 5)
 		base->name = ft_strdup("Zbli");
 	else if (base->j == 6)
@@ -73,7 +73,7 @@ void	init_base(t_base *base, char *av)
 	base->mx.bpp = 8;
 	base->mx.endian = 0;
 	base->win_size = base->winx * base->winy;
-	base->mouse = 0;
+	base->mouse = 1;
 	base->ui1 = 0;
 	base->ui2 = 0;
 	base->ui3 = 0;
@@ -114,9 +114,9 @@ t_fract	init_fract(t_base *base)
 	fr.b = 250;
 	fr.zoom = 1.0;
 	fr.yolo = 0;
-	fr.cr = 0.7;
+	fr.cr = 0.285;
 	fr.maxi = 10;
-	fr.ci = 0.27015;
+	fr.ci = 0.1;
 	fr.posx = base->winx / 2;
 	fr.posy = base->winy / 2;
 	get_fractal(base->av, &fr);

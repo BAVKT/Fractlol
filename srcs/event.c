@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:42:28 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/02 19:57:34 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/04 18:31:53 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,12 @@
 
 int		evmv_mouse(int x, int y, t_base *base)
 {
-	double	range;
-	double	step;
-	
+
 	if (base->mouse)
 	{
-		range = 4;
-		step = range / base->winx;
-		base->frfr.ar = base->frfr.nr + (step * (double)y);
-		range = 2;
-		step = range / base->winy;
-		base->frfr.ai = base->frfr.ni + (step * (double)x);
+		base->frfr.sx = (double)(((long double)x - base->winx / 2) / 150);
+		base->frfr.sy = (double)(((long double)y - base->winy / 2) / 150);
 	}
-	// base->frfr.posx = x;
-	// base->frfr.posy = y;
 	refresh(base);
 	return (0);
 }
@@ -40,6 +32,7 @@ int		evmv_mouse(int x, int y, t_base *base)
 ** Mouse events
 */
 
+0xFF*FF*FF*FF
 int		ev_mouse(int k, int x, int y, void *param)
 {
 	t_base *base;

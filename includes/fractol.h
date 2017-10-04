@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/02 19:00:48 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/04 18:31:59 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # define NBTH 8
 # define W 0xffffff
 # define G 0x00ff00
-# define WINX 800
-# define WINY 800
+# define WINX 1000
+# define WINY 1000
 
 typedef struct			s_mlx
 {
@@ -40,11 +40,15 @@ typedef struct			s_fract
 	int					y;
 	int					i;
 	int					j;
-	int					sx;
-	int					sy;
+	double				sx;
+	double				sy;
 	int					reel;
 	int					ima;
 	int					maxi;
+	int					maxre;
+	int					maxim;
+	int					minre;
+	int					minim;
 	int					winx;
 	int					winy;
 	int					posx;
@@ -108,7 +112,7 @@ void					mandelbrot(t_fract *fr);
 
 void					reversebrot(t_fract *fr);
 void					reversejulia(t_fract *fr);
-void					cell(t_fract *fr);
+void					spark(t_fract *fr);
 void					zbli(t_fract *fr);
 void					plume(t_fract *fr);
 
@@ -158,7 +162,7 @@ static const t_ft g_tab_fr[] =
 	&mandelbrot,
 	&reversebrot,
 	&reversejulia,
-	&cell,
+	&spark,
 	&zbli,
 	&plume
 };
