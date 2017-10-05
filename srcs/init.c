@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:32:42 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/04 18:31:53 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/05 16:28:03 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,33 @@
 ** Return the the letter corresponding to the fractal
 */
 
-void	get_fractal(char *av, t_fract *fr)
+int		get_fractal(char *av)
 {
+	int j;
+
+	j = 0;
 	if (!ft_strcmp(av, "Julia") || !ft_strcmp(av, "j") ||
 		!ft_strcmp(av, "julia") || !ft_strcmp(av, "J"))
-		fr->j = 0;
+		j = 0;
 	else if (!ft_strcmp(av, "Mandelbrot") || !ft_strcmp(av, "m") ||
-			 !ft_strcmp(av, "mandelbrot") || !ft_strcmp(av, "M"))
-		fr->j = 1;
+			!ft_strcmp(av, "mandelbrot") || !ft_strcmp(av, "M"))
+		j = 1;
 	else if (!ft_strcmp(av, "Reversebrot") || !ft_strcmp(av, "rb") ||
-			 !ft_strcmp(av, "reversebrot") || !ft_strcmp(av, "RB"))
-		fr->j = 2;
-	else if (!ft_strcmp(av, "Plumes") || !ft_strcmp(av, "p") ||
-			 !ft_strcmp(av, "plumes") || !ft_strcmp(av, "P"))
-		fr->j = 3;
-	else if (!ft_strcmp(av, "Spark") || !ft_strcmp(av, "s") ||
-			 !ft_strcmp(av, "spark") || !ft_strcmp(av, "S"))
-		fr->j = 4;
-	else if (!ft_strcmp(av, "Zbli") || !ft_strcmp(av, "z") ||
-			 !ft_strcmp(av, "zbli") || !ft_strcmp(av, "Z"))
-		fr->j = 5;
+			!ft_strcmp(av, "reversebrot") || !ft_strcmp(av, "RB"))
+		j = 2;
 	else if (!ft_strcmp(av, "Reversejulia") || !ft_strcmp(av, "rj") ||
-			 !ft_strcmp(av, "reversejulia") || !ft_strcmp(av, "RJ"))
-		fr->j = 6;
+			!ft_strcmp(av, "reversejulia") || !ft_strcmp(av, "RJ"))
+		j = 3;
+	else if (!ft_strcmp(av, "Spark") || !ft_strcmp(av, "s") ||
+			!ft_strcmp(av, "spark") || !ft_strcmp(av, "S"))
+		j = 4;
+	else if (!ft_strcmp(av, "zbli") || !ft_strcmp(av, "Z"))
+		j = 5;
+	else if (!ft_strcmp(av, "plumes") || !ft_strcmp(av, "P"))
+		j = 6;
 	else
 		error(2);
+	return (j);
 }
 
 /*
@@ -77,9 +79,9 @@ void	init_base(t_base *base, char *av)
 	base->ui1 = 0;
 	base->ui2 = 0;
 	base->ui3 = 0;
-	base->j = 0;
 	base->mx.sizeline = base->winy;
 	base->frfr = init_fract(base);
+	base->j = get_fractal(av);
 	base->hide = 0;
 	base->autoiter = 0;
 	base->mx.mlx = mlx_init();
@@ -101,14 +103,10 @@ t_fract	init_fract(t_base *base)
 	fr.y = 0;
 	fr.i = 0;
 	fr.j = base->j;
-	fr.nr = 0.0;
-	fr.ni = 0.0;
-	fr.ar = 0.0;
-	fr.ai = 0.0;
 	fr.mx = 0.0;
 	fr.my = 0.0;
-	fr.sx = 0;
-	fr.sy = 0;
+	fr.sx = 0.0;
+	fr.sy = 0.0;
 	fr.r = 230;
 	fr.g = 105;
 	fr.b = 250;
@@ -117,9 +115,9 @@ t_fract	init_fract(t_base *base)
 	fr.cr = 0.285;
 	fr.maxi = 10;
 	fr.ci = 0.1;
+	fr.badtrip = 0;
 	fr.posx = base->winx / 2;
 	fr.posy = base->winy / 2;
-	get_fractal(base->av, &fr);
 	return (fr);
 }
 
@@ -152,5 +150,6 @@ t_fract	init_fracthr(t_base *base)
 	fr.posx = base->frfr.posx;
 	fr.posy = base->frfr.posy;
 	fr.yolo = base->frfr.yolo;
+	fr.badtrip = base->frfr.badtrip;
 	return (fr);
 }

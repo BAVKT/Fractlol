@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/04 18:31:59 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/05 16:09:58 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct			s_fract
 	int					posx;
 	int					posy;
 	int					yolo;
+	int					badtrip;
 	int					twiny;
 	int					*data;
 	double				cr;
@@ -143,7 +144,7 @@ int						evmv_mouse(int x, int y, t_base *base);
 */
 
 void					get_name(t_base *base);
-void					get_fractal(char *av, t_fract *fr);
+int						get_fractal(char *av);
 void					init_base(t_base *base, char *av);
 t_fract					init_fract(t_base *base);
 t_fract					init_fracthr(t_base *base);

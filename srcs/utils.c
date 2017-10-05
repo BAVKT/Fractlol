@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:48:54 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/04 18:31:54 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/05 15:52:30 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,6 @@ void	error(int e)
 		ft_putendl_fd("Multithreading failed.", 2);
 	exit(1);
 }
-
-/*
-** Somes colors set
-*/
-
-// void	color_set(int k, t_base *base)
-// {
-// 	if (k == 33)
-// 		color_tab[]
-// }
 
 /*
 ** Free all the tabs needed

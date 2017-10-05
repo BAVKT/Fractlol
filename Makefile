@@ -6,7 +6,7 @@
 #    By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/27 17:07:31 by vmercadi          #+#    #+#              #
-#    Updated: 2017/10/01 17:04:21 by vmercadi         ###   ########.fr        #
+#    Updated: 2017/10/05 16:27:42 by vmercadi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ SRC = srcs/fractol.c srcs/init.c srcs/display.c srcs/fractals.c srcs/event.c \
       srcs/utils.c srcs/fractals2.c
 
 MLX_S = autre/minilibx_macos_sierra/
+
+MLX = autre/minilibx_macos/
 
 INCLUDES = -I includes -I autre/minilibx_macos -I libft
 
@@ -40,11 +42,12 @@ $(NAME):$(SRCO)
 	@echo '---------------------------------------'
 
 it: all
-	./fractol M
+	@./fractol M
 
 clean:
 	@rm -rf $(SRCO)
 	@make clean -s -C libft/
+	@make clean -s -C $(MLX_S)/
 
 fclean: clean
 	@rm -rf $(NAME)
@@ -55,4 +58,4 @@ re: fclean all
 ultra: all clean
 
 reit: re clean
-	./fractol M
+	@./fractol M

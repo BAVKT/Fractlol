@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:50:47 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/04 18:31:52 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/05 15:55:37 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	spark(t_fract *fr)
 }
 
 /*
-** Reverse julia with ni = -2 instead of 2
+** Zbliii
 */
 
 void	zbli(t_fract *fr)

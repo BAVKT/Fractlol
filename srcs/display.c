@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:38:15 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/04 18:31:53 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/05 16:10:05 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	px_img(t_fract *fr)
 }
 
 /*
-** return the color needed for the pixel
+** Return the color needed for the pixel
 */
 
 void	get_color(t_fract *fr)
@@ -33,6 +33,8 @@ void	get_color(t_fract *fr)
 		fr->color = 0;
 	else if (fr->yolo)
 		fr->color = rand();
+	else if (fr->badtrip)
+		fr->color = (fr->color << 8 | fr->i * fr->maxi);
 	else
 		fr->color = (fr->i * (fr->r * fr->g * fr->b)) % 16581375;
 }
@@ -45,7 +47,7 @@ void	ui(t_base *base)
 {
 	if (base->hide)
 	{
-		mlx_string_put(base->mx.mlx, base->mx.win, 5, 5, W, "[H]");		
+		mlx_string_put(base->mx.mlx, base->mx.win, 5, 5, W, "[H]");
 		return ;
 	}
 	get_name(base);
@@ -64,7 +66,7 @@ void	ui(t_base *base)
 }
 
 /*
-** Display the upper left UI on the window
+** Upper left UI on the window
 */
 
 void	ui1(t_base *base)
@@ -80,22 +82,22 @@ void	ui1(t_base *base)
 	mlx_string_put(mx, w, 20, 90, W, "Move      = Arows");
 	mlx_string_put(mx, w, 20, 110, W, "Fractal   = <  &  >");
 	mlx_string_put(mx, w, 20, 130, W, "Zoom      = +/-  &  Scroll");
-	if (base->mouse)
-		mlx_string_put(mx, w, 20, 150, W, "Woah      = SpaceBar [ON]");
-	else
-		mlx_string_put(mx, w, 20, 150, W, "Woah      = SpaceBar [OFF]");
-	if (base->frfr.yolo)
-		mlx_string_put(mx, w, 20, 170, W, "Yolo      = Y        [ON]");
-	else
-		mlx_string_put(mx, w, 20, 170, W, "Yolo      = Y        [OFF]");
-	if (base->autoiter)
-		mlx_string_put(mx, w, 20, 190, W, "Auto-iter = Enter    [ON]");
-	else
-		mlx_string_put(mx, w, 20, 190, W, "Auto-iter = Enter    [OFF]");
+	(base->mouse) ? mlx_string_put(mx, w, 20, 150, W,
+	"Woah      = SpaceBar [ON]") : mlx_string_put(mx, w, 20, 150, W,
+	"Woah      = SpaceBar [OFF]");
+	(base->frfr.yolo) ? mlx_string_put(mx, w, 20, 170, W,
+	"Yolo      = Y        [ON]") : mlx_string_put(mx, w, 20, 170, W,
+	"Yolo      = Y        [OFF]");
+	(base->autoiter) ? mlx_string_put(mx, w, 20, 190, W,
+	"Auto-iter = Enter    [ON]") : mlx_string_put(mx, w, 20, 190, W,
+	"Auto-iter = Enter    [OFF]");
+	(base->frfr.badtrip) ? mlx_string_put(mx, w, 20, 210, W,
+	"Badtrip = Delete     [ON]") : mlx_string_put(mx, w, 20, 210, W,
+	"Badtrip = Delete     [OFF]");
 }
 
 /*
-** Display the bottom right UI
+** Bottom right UI
 */
 
 void	ui2(t_base *base)

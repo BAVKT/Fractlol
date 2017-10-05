@@ -6,19 +6,18 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:42:28 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/04 18:31:53 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/05 16:10:31 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-			#include <stdio.h>
+
 /*
-** Catch the mouses movments
+** Catch the mouse movments
 */
 
 int		evmv_mouse(int x, int y, t_base *base)
 {
-
 	if (base->mouse)
 	{
 		base->frfr.sx = (double)(((long double)x - base->winx / 2) / 150);
@@ -32,7 +31,6 @@ int		evmv_mouse(int x, int y, t_base *base)
 ** Mouse events
 */
 
-0xFF*FF*FF*FF
 int		ev_mouse(int k, int x, int y, void *param)
 {
 	t_base *base;
@@ -66,7 +64,7 @@ int		ev_mouse(int k, int x, int y, void *param)
 
 void	ev_move(int k, t_base *base)
 {
-	if ((k == 69 || k == 24)&& base->frfr.zoom < 999999999999)
+	if ((k == 69 || k == 24) && base->frfr.zoom < 999999999999)
 	{
 		if (base->autoiter)
 			base->frfr.maxi++;
@@ -135,6 +133,8 @@ int		event(int k, void *param)
 	base = (t_base *)param;
 	if (k == 16)
 		base->frfr.yolo = (base->frfr.yolo == 0) ? 1 : 0;
+	else if (k == 51)
+		base->frfr.badtrip = (base->frfr.badtrip == 0) ? 1 : 0;
 	else if (k == 4)
 		base->hide = (base->hide == 0) ? 1 : 0;
 	else if (k == 36 || k == 76)
