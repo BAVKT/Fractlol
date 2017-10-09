@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:38:15 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/05 16:10:05 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/09 16:12:20 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ void	ui1(t_base *base)
 	"Auto-iter = Enter    [ON]") : mlx_string_put(mx, w, 20, 190, W,
 	"Auto-iter = Enter    [OFF]");
 	(base->frfr.badtrip) ? mlx_string_put(mx, w, 20, 210, W,
-	"Badtrip = Delete     [ON]") : mlx_string_put(mx, w, 20, 210, W,
-	"Badtrip = Delete     [OFF]");
+	"Badtrip   = Delete   [ON]") : mlx_string_put(mx, w, 20, 210, W,
+	"Badtrip   = Delete   [OFF]");
 }
 
 /*

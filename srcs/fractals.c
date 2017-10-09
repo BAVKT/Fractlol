@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 18:29:39 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/04 18:31:52 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/09 18:11:48 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	*start_draw(void *tmp)
 			fr->ar = 0;
 			fr->ai = 0;
 			fr->i = 0;
-			g_tab_fr[fr->j](fr);
+			init_tab(fr);
+			fr->tab[fr->j]((void *)fr);
 			get_color(fr);
 			px_img(fr);
 			fr->x++;
@@ -47,8 +48,11 @@ void	*start_draw(void *tmp)
 ** Algorithm for the Julia fractal
 */
 
-void	julia(t_fract *fr)
+void	julia(void *f)
 {
+	t_fract *fr;
+
+	fr = (t_fract *)f;
 	fr->nr = 1.5 * (fr->x - fr->winx / 2) /
 		(0.5 * fr->zoom * fr->winx) + fr->mx;
 	fr->ni = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
@@ -71,8 +75,11 @@ void	julia(t_fract *fr)
 ** Algorithm for the Mandelbrot fractal
 */
 
-void	mandelbrot(t_fract *fr)
+void	mandelbrot(void *f)
 {
+	t_fract *fr;
+
+	fr = (t_fract *)f;
 	fr->cr = 1.5 * (fr->x - fr->winx / 2) /
 		(0.5 * fr->zoom * fr->winx) + fr->mx;
 	fr->ci = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;

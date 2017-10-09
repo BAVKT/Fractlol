@@ -6,66 +6,11 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:32:42 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/05 16:28:03 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/09 18:14:05 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-/*
-** Return the the letter corresponding to the fractal
-*/
-
-int		get_fractal(char *av)
-{
-	int j;
-
-	j = 0;
-	if (!ft_strcmp(av, "Julia") || !ft_strcmp(av, "j") ||
-		!ft_strcmp(av, "julia") || !ft_strcmp(av, "J"))
-		j = 0;
-	else if (!ft_strcmp(av, "Mandelbrot") || !ft_strcmp(av, "m") ||
-			!ft_strcmp(av, "mandelbrot") || !ft_strcmp(av, "M"))
-		j = 1;
-	else if (!ft_strcmp(av, "Reversebrot") || !ft_strcmp(av, "rb") ||
-			!ft_strcmp(av, "reversebrot") || !ft_strcmp(av, "RB"))
-		j = 2;
-	else if (!ft_strcmp(av, "Reversejulia") || !ft_strcmp(av, "rj") ||
-			!ft_strcmp(av, "reversejulia") || !ft_strcmp(av, "RJ"))
-		j = 3;
-	else if (!ft_strcmp(av, "Spark") || !ft_strcmp(av, "s") ||
-			!ft_strcmp(av, "spark") || !ft_strcmp(av, "S"))
-		j = 4;
-	else if (!ft_strcmp(av, "zbli") || !ft_strcmp(av, "Z"))
-		j = 5;
-	else if (!ft_strcmp(av, "plumes") || !ft_strcmp(av, "P"))
-		j = 6;
-	else
-		error(2);
-	return (j);
-}
-
-/*
-** Return the name of the current fractal
-*/
-
-void	get_name(t_base *base)
-{
-	if (base->j == 0)
-		base->name = ft_strdup("Julia");
-	else if (base->j == 1)
-		base->name = ft_strdup("Mandelbrot");
-	else if (base->j == 2)
-		base->name = ft_strdup("Reversebrot");
-	else if (base->j == 3)
-		base->name = ft_strdup("Reversejulia");
-	else if (base->j == 4)
-		base->name = ft_strdup("Spark");
-	else if (base->j == 5)
-		base->name = ft_strdup("Zbli");
-	else if (base->j == 6)
-		base->name = ft_strdup("Plumes");
-}
 
 void	init_base(t_base *base, char *av)
 {
@@ -152,4 +97,15 @@ t_fract	init_fracthr(t_base *base)
 	fr.yolo = base->frfr.yolo;
 	fr.badtrip = base->frfr.badtrip;
 	return (fr);
+}
+
+void	init_tab(t_fract *fr)
+{
+	fr->tab[0] = &julia;
+	fr->tab[1] = &mandelbrot;
+	fr->tab[2] = &reversebrot;
+	fr->tab[3] = &reversejulia;
+	fr->tab[4] = &spark;
+	fr->tab[5] = &zbli;
+	fr->tab[6] = &plume;
 }

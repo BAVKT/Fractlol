@@ -6,7 +6,7 @@
 #    By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/27 17:07:31 by vmercadi          #+#    #+#              #
-#    Updated: 2017/10/05 16:27:42 by vmercadi         ###   ########.fr        #
+#    Updated: 2017/10/09 18:15:55 by vmercadi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ MLX_S = autre/minilibx_macos_sierra/
 
 MLX = autre/minilibx_macos/
 
-INCLUDES = -I includes -I autre/minilibx_macos -I libft
+INCLUDES = -I includes -I $(MLX_S) -I libft
 
 CFLAGS = -Wall -Wextra -Werror $(INCLUDES)
 
@@ -42,7 +42,7 @@ $(NAME):$(SRCO)
 	@echo '---------------------------------------'
 
 it: all
-	@./fractol M
+	@./fractol J
 
 clean:
 	@rm -rf $(SRCO)
@@ -58,4 +58,4 @@ re: fclean all
 ultra: all clean
 
 reit: re clean
-	@./fractol M
+	@./fractol J

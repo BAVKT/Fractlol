@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:50:47 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/05 15:55:37 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/09 16:37:30 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@
 ** Mandelbrot where + & - are swapped
 */
 
-void	reversebrot(t_fract *fr)
+void	reversebrot(void *f)
 {
+	t_fract *fr;
+
+	fr = (t_fract *)f;
 	fr->cr = 1.5 * (fr->x - fr->winx / 2) /
 		(0.5 * fr->zoom * fr->winx) + fr->mx;
 	fr->ci = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
@@ -37,8 +40,11 @@ void	reversebrot(t_fract *fr)
 ** Julia where + & - are swapped
 */
 
-void	reversejulia(t_fract *fr)
+void	reversejulia(void *f)
 {
+	t_fract *fr;
+
+	fr = (t_fract *)f;
 	fr->nr = 1.5 * (fr->x - fr->winx / 2) /
 		(0.5 * fr->zoom * fr->winx) + fr->mx;
 	fr->ni = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
@@ -61,8 +67,11 @@ void	reversejulia(t_fract *fr)
 ** Julia with ni = -2 instead of 2
 */
 
-void	spark(t_fract *fr)
+void	spark(void *f)
 {
+	t_fract *fr;
+
+	fr = (t_fract *)f;
 	fr->nr = 1.5 * (fr->x - fr->winx / 2) /
 		(0.5 * fr->zoom * fr->winx) + fr->mx;
 	fr->ni = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
@@ -85,8 +94,11 @@ void	spark(t_fract *fr)
 ** Zbliii
 */
 
-void	zbli(t_fract *fr)
+void	zbli(void *f)
 {
+	t_fract *fr;
+
+	fr = (t_fract *)f;
 	fr->nr = 1.5 * (fr->x - fr->winx / 2) /
 		(0.5 * fr->zoom * fr->winx) + fr->mx;
 	fr->ni = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;
@@ -109,8 +121,11 @@ void	zbli(t_fract *fr)
 ** Reverse julia with ni = -2 instead of 2
 */
 
-void	plume(t_fract *fr)
+void	plume(void *f)
 {
+	t_fract *fr;
+
+	fr = (t_fract *)f;
 	fr->nr = 1.5 * (fr->x - fr->winx / 2) /
 		(0.5 * fr->zoom * fr->winx) + fr->mx;
 	fr->ni = (fr->y - fr->winy / 2) / (0.5 * fr->zoom * fr->winy) + fr->my;

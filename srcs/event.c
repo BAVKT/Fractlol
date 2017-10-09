@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:42:28 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/05 16:10:31 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/09 18:22:56 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int		evmv_mouse(int x, int y, t_base *base)
 		base->frfr.sx = (double)(((long double)x - base->winx / 2) / 150);
 		base->frfr.sy = (double)(((long double)y - base->winy / 2) / 150);
 	}
+	base->frfr.posx = x;
+	base->frfr.posy = y;
 	refresh(base);
 	return (0);
 }
@@ -42,13 +44,13 @@ int		ev_mouse(int k, int x, int y, void *param)
 		base->frfr.g = (x + y) * 255;
 		base->frfr.b = (x + y) * 255;
 	}
-	else if (k == 4 && base->frfr.zoom < INT_MAX)
+	else if (k == 4 && base->frfr.zoom < 999999999999)
 	{
 		if (base->autoiter)
 			base->frfr.maxi++;
 		base->frfr.zoom += 0.2 * base->frfr.zoom;
 	}
-	else if (k == 5)
+	else if (k == 5 && base->frfr.zoom > 0.2)
 	{
 		if (base->autoiter && base->frfr.maxi > 2)
 			base->frfr.maxi--;

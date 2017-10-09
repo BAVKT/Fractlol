@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/05 16:09:58 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/09 19:39:13 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 # define NBTH 8
 # define W 0xffffff
 # define G 0x00ff00
-# define WINX 1000
-# define WINY 1000
+# define WINX 800
+# define WINY 800
+
+typedef void			(*t_ft) (void*);
 
 typedef struct			s_mlx
 {
@@ -36,14 +38,11 @@ typedef struct			s_mlx
 
 typedef struct			s_fract
 {
+	t_ft				tab[7];
 	int					x;
 	int					y;
 	int					i;
 	int					j;
-	double				sx;
-	double				sy;
-	int					reel;
-	int					ima;
 	int					maxi;
 	int					maxre;
 	int					maxim;
@@ -57,6 +56,8 @@ typedef struct			s_fract
 	int					badtrip;
 	int					twiny;
 	int					*data;
+	double				sx;
+	double				sy;
 	double				cr;
 	double				ci;
 	double				nr;
@@ -91,8 +92,6 @@ typedef struct			s_base
 	int					win_size;
 }						t_base;
 
-typedef void			(*t_ft) (t_fract*);
-
 /*
 ** Start of the program			|  fractol.c
 */
@@ -104,18 +103,18 @@ void					fractol(t_base *base);
 */
 
 void					*start_draw(void *base);
-void					julia(t_fract *fr);
-void					mandelbrot(t_fract *fr);
+void					julia(void *fr);
+void					mandelbrot(void *fr);
 
 /*
 ** Other fractals algorithms	|  fractals2.c
 */
 
-void					reversebrot(t_fract *fr);
-void					reversejulia(t_fract *fr);
-void					spark(t_fract *fr);
-void					zbli(t_fract *fr);
-void					plume(t_fract *fr);
+void					reversebrot(void *fr);
+void					reversejulia(void *fr);
+void					spark(void *fr);
+void					zbli(void *fr);
+void					plume(void *fr);
 
 /*
 ** UI, colors and display		| display.c
@@ -129,7 +128,7 @@ void					ui2(t_base *base);
 void					ui3(t_base *base);
 
 /*
-** All the events fucntions		|  event.c
+** All the events functions		|  event.c
 */
 
 void					refresh(t_base *base);
@@ -143,9 +142,8 @@ int						evmv_mouse(int x, int y, t_base *base);
 ** The init functions			|  init.c
 */
 
-void					get_name(t_base *base);
-int						get_fractal(char *av);
 void					init_base(t_base *base, char *av);
+void					init_tab(t_fract *fr);
 t_fract					init_fract(t_base *base);
 t_fract					init_fracthr(t_base *base);
 
@@ -156,16 +154,7 @@ t_fract					init_fracthr(t_base *base);
 void					error(int e);
 int						clean(t_base *base);
 void					mthread(t_base *base);
-
-static const t_ft g_tab_fr[] =
-{
-	&julia,
-	&mandelbrot,
-	&reversebrot,
-	&reversejulia,
-	&spark,
-	&zbli,
-	&plume
-};
+void					get_name(t_base *base);
+int						get_fractal(char *av);
 
 #endif
