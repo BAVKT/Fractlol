@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:32:42 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/10 17:22:59 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/09 18:14:05 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ void	init_base(t_base *base, char *av)
 	base->mx.bpp = 8;
 	base->mx.endian = 0;
 	base->win_size = base->winx * base->winy;
-	base->mouse = 0;
-	base->ui1 = 1;
-	base->ui2 = 1;
+	base->mouse = 1;
+	base->ui1 = 0;
+	base->ui2 = 0;
+	base->ui3 = 0;
 	base->mx.sizeline = base->winy;
 	base->frfr = init_fract(base);
 	base->j = get_fractal(av);
@@ -57,7 +58,7 @@ t_fract	init_fract(t_base *base)
 	fr.zoom = 1.0;
 	fr.yolo = 0;
 	fr.cr = 0.285;
-	fr.maxi = 20;
+	fr.maxi = 10;
 	fr.ci = 0.1;
 	fr.badtrip = 0;
 	fr.posx = base->winx / 2;

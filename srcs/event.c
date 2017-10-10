@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:42:28 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/09 18:22:56 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/09 20:00:45 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		ev_mouse(int k, int x, int y, void *param)
 	}
 	else if (k == 4 && base->frfr.zoom < 999999999999)
 	{
-		if (base->autoiter)
+		if (base->autoiter && base->frfr.maxi < 150)
 			base->frfr.maxi++;
 		base->frfr.zoom += 0.2 * base->frfr.zoom;
 	}

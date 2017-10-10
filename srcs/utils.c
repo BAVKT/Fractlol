@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:48:54 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/10 17:24:00 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/09 18:15:19 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,19 +74,36 @@ int		clean(t_base *base)
 }
 
 /*
-** Return the color needed for the pixel
+** Return the the letter corresponding to the fractal
 */
 
-void	get_color(t_fract *fr)
+int		get_fractal(char *av)
 {
-	if (fr->i >= fr->maxi)
-		fr->color = 0;
-	else if (fr->yolo)
-		fr->color = rand();
-	else if (fr->badtrip)
-		fr->color = (fr->color << 8 | fr->i * fr->maxi);
+	int j;
+
+	j = 0;
+	if (!ft_strcmp(av, "Julia") || !ft_strcmp(av, "j") ||
+		!ft_strcmp(av, "julia") || !ft_strcmp(av, "J"))
+		j = 0;
+	else if (!ft_strcmp(av, "Mandelbrot") || !ft_strcmp(av, "m") ||
+			!ft_strcmp(av, "mandelbrot") || !ft_strcmp(av, "M"))
+		j = 1;
+	else if (!ft_strcmp(av, "Reversebrot") || !ft_strcmp(av, "rb") ||
+			!ft_strcmp(av, "reversebrot") || !ft_strcmp(av, "RB"))
+		j = 2;
+	else if (!ft_strcmp(av, "Reversejulia") || !ft_strcmp(av, "rj") ||
+			!ft_strcmp(av, "reversejulia") || !ft_strcmp(av, "RJ"))
+		j = 3;
+	else if (!ft_strcmp(av, "Spark") || !ft_strcmp(av, "s") ||
+			!ft_strcmp(av, "spark") || !ft_strcmp(av, "S"))
+		j = 4;
+	else if (!ft_strcmp(av, "zbli") || !ft_strcmp(av, "Z"))
+		j = 5;
+	else if (!ft_strcmp(av, "plumes") || !ft_strcmp(av, "P"))
+		j = 6;
 	else
-		fr->color = (fr->i * (fr->r * fr->g * fr->b)) % 16581375;
+		error(2);
+	return (j);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:43:11 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/10 17:23:02 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/09 19:39:13 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct			s_base
 	int					j;
 	int					ui1;
 	int					ui2;
+	int					ui3;
 	int					winx;
 	int					winy;
 	int					mouse;
@@ -123,8 +124,8 @@ void					px_img(t_fract *fr);
 void					get_color(t_fract *fr);
 void					ui(t_base *base);
 void					ui1(t_base *base);
+void					ui2(t_base *base);
 void					ui3(t_base *base);
-void					ui4(t_base *base);
 
 /*
 ** All the events functions		|  event.c
