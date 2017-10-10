@@ -6,7 +6,7 @@
 #    By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/27 17:07:31 by vmercadi          #+#    #+#              #
-#    Updated: 2017/10/10 17:52:45 by vmercadi         ###   ########.fr        #
+#    Updated: 2017/10/10 17:54:52 by vmercadi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,11 @@ MLX_S = autre/minilibx_macos_sierra/
 
 MLX = autre/minilibx_macos/
 
-INCLUDES = -I includes -I $(MLX) -I libft
+INCLUDES = -I includes -I $(MLX_S) -I libft
 
 CFLAGS = -Wall -Wextra -Werror $(INCLUDES)
 
-MFLAGS = -framework OpenGL -framework AppKit -L $(MLX) -lmlx -lpthread
+MFLAGS = -framework OpenGL -framework AppKit -L -lmlx -lpthread
 
 SRCO = $(SRC:%.c=%.o)
 
@@ -36,7 +36,7 @@ all: $(NAME)
 $(NAME):$(SRCO)
 	@make -s -C $(MLX)
 	@make -s -C libft/
-	@gcc $(FLAGS) $(LIB) -o $(NAME) $(SRC) $(MFLAGS) $(INCLUDES)
+	@gcc $(FLAGS) $(LIB) -o $(NAME) $(SRC) $(MFLAGS) $(MLX) $(INCLUDES)
 	@echo '---------------------------------------'
 	@echo 'Everything compiled nicely and softly !'
 	@echo '---------------------------------------'
@@ -44,7 +44,7 @@ $(NAME):$(SRCO)
 sierra:$(SRCO)
 	@make -s -C $(MLX_S)
 	@make -s -C libft/
-	@gcc $(FLAGS) $(LIB) -o $(NAME) $(SRC) $(MFLAGS) $(INCLUDES)
+	@gcc $(FLAGS) $(LIB) -o $(NAME) $(SRC) $(MFLAGS) $(MLX_S) $(INCLUDES)
 	@echo '---------------------------------------'
 	@echo 'Everything compiled nicely and softly !'
 	@echo '---------------------------------------'
