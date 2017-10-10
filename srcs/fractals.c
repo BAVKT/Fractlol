@@ -6,11 +6,44 @@
 /*   By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 18:29:39 by vmercadi          #+#    #+#             */
-/*   Updated: 2017/10/09 18:11:48 by vmercadi         ###   ########.fr       */
+/*   Updated: 2017/10/10 17:23:48 by vmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+/*
+** Return the the letter corresponding to the fractal
+*/
+
+int		get_fractal(char *av)
+{
+	int j;
+
+	j = 0;
+	if (!ft_strcmp(av, "Julia") || !ft_strcmp(av, "j") ||
+		!ft_strcmp(av, "julia") || !ft_strcmp(av, "J"))
+		j = 0;
+	else if (!ft_strcmp(av, "Mandelbrot") || !ft_strcmp(av, "m") ||
+			!ft_strcmp(av, "mandelbrot") || !ft_strcmp(av, "M"))
+		j = 1;
+	else if (!ft_strcmp(av, "Reversebrot") || !ft_strcmp(av, "rb") ||
+			!ft_strcmp(av, "reversebrot") || !ft_strcmp(av, "RB"))
+		j = 2;
+	else if (!ft_strcmp(av, "Reversejulia") || !ft_strcmp(av, "rj") ||
+			!ft_strcmp(av, "reversejulia") || !ft_strcmp(av, "RJ"))
+		j = 3;
+	else if (!ft_strcmp(av, "Spark") || !ft_strcmp(av, "s") ||
+			!ft_strcmp(av, "spark") || !ft_strcmp(av, "S"))
+		j = 4;
+	else if (!ft_strcmp(av, "zbli") || !ft_strcmp(av, "Z"))
+		j = 5;
+	else if (!ft_strcmp(av, "plumes") || !ft_strcmp(av, "P"))
+		j = 6;
+	else
+		error(2);
+	return (j);
+}
 
 /*
 ** Init and start the fractal needed
