@@ -6,7 +6,7 @@
 #    By: vmercadi <vmercadi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/27 17:07:31 by vmercadi          #+#    #+#              #
-#    Updated: 2017/10/10 12:42:36 by vmercadi         ###   ########.fr        #
+#    Updated: 2017/10/10 17:52:45 by vmercadi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,14 @@ all: $(NAME)
 
 $(NAME):$(SRCO)
 	@make -s -C $(MLX)
+	@make -s -C libft/
+	@gcc $(FLAGS) $(LIB) -o $(NAME) $(SRC) $(MFLAGS) $(INCLUDES)
+	@echo '---------------------------------------'
+	@echo 'Everything compiled nicely and softly !'
+	@echo '---------------------------------------'
+
+sierra:$(SRCO)
+	@make -s -C $(MLX_S)
 	@make -s -C libft/
 	@gcc $(FLAGS) $(LIB) -o $(NAME) $(SRC) $(MFLAGS) $(INCLUDES)
 	@echo '---------------------------------------'
